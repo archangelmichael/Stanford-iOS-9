@@ -10,23 +10,30 @@ import UIKit
 
 class FaceView: UIView {
     let scale : CGFloat = 0.8
+    let lineWidth : CGFloat = 2.0
+    let eyeRadius : CGFloat = 10.0
 
-    var faceRadius : CGFloat {
+    private var faceRadius : CGFloat {
         return min(bounds.size.height, bounds.size.width)/2 * scale
     }
-    var faceCenter : CGPoint {
+    
+    private var faceCenter : CGPoint {
         return CGPoint(x: bounds.midX, y: bounds.midY)
+    }
+    
+    private func pathForCircleAt(center: CGPoint, radius: CGFloat) -> UIBezierPath {
+        let path = UIBezierPath(arcCenter: center,
+                     radius: radius,
+                     startAngle: CGFloat(0) ,
+                     endAngle: CGFloat(2 * M_PI),
+                     clockwise: true)
+        path.lineWidth = lineWidth
+        return path
     }
     
     override func draw(_ rect: CGRect) {
         
-        let face = UIBezierPath(arcCenter: faceCenter,
-                                 radius: faceRadius,
-                                 startAngle: CGFloat(0) ,
-                                 endAngle: CGFloat(2 * M_PI),
-                                 clockwise: true )
-        
-        face.lineWidth = 2.0
+        let face = self.pathForCircleAt(center: faceCenter, radius: faceRadius)
         UIColor.green.setFill()
         face.fill()
         
@@ -42,27 +49,15 @@ class FaceView: UIView {
         
         let leftEyeCenter = CGPoint(x: 2/3 * faceCenter.x,
                                     y: 2/3 * faceCenter.y)
-        let leftEye =  UIBezierPath(arcCenter: leftEyeCenter,
-                                    radius: 10,
-                                    startAngle: CGFloat(0) ,
-                                    endAngle: CGFloat(2 * M_PI),
-                                    clockwise: true )
-        leftEye.lineWidth = 2.0
+        let leftEye = self.pathForCircleAt(center: leftEyeCenter, radius: eyeRadius)
         UIColor.blue.setStroke()
         leftEye.stroke()
         
         let rightEyeCenter = CGPoint(x: 4/3 * faceCenter.x,
                                     y: 2/3 * faceCenter.y)
-        let rightEye =  UIBezierPath(arcCenter: rightEyeCenter,
-                                    radius: 10,
-                                    startAngle: CGFloat(0) ,
-                                    endAngle: CGFloat(2 * M_PI),
-                                    clockwise: true )
-        rightEye.lineWidth = 2.0
+        let rightEye =  self.pathForCircleAt(center: rightEyeCenter, radius: eyeRadius)
         UIColor.blue.setStroke()
         rightEye.stroke()
-
-        
     }
     
 
