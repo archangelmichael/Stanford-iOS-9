@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         print(tuple.int)
         print(self.getTuple().doub)
         
-        let arr = [2,5,5,7,4]
+        let arr = [2, 5.51, 5, 7, 4]
         for element in arr {
             print(element)
         }
@@ -35,11 +35,21 @@ class ViewController: UIViewController {
         let filteredArr = arr.filter({ $0 > 4})
         print(filteredArr)
         
+        let convertedArr = arr.map({ String($0) })
+        print(convertedArr)
+        
+        let sum = arr.reduce(0) { $0 - $1 }
+        print(sum)
+        
         let arr2 = [String]()
         print(arr2)
         
-        let dict = [String:Double]()
+        var dict = [String:Double]()
         print(dict)
+        dict["key"] = 65.8
+        for (key, value) in dict {
+            print( "\(key) \(value)")
+        }
         
         let range = arr[3...4]
         let range2 = arr[3..<4]
