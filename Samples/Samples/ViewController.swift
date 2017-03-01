@@ -28,6 +28,19 @@ class ViewController: UIViewController {
         print(self.getTuple().doub)
         
         let arr = [2,5,5,7,4]
+        for element in arr {
+            print(element)
+        }
+        
+        let filteredArr = arr.filter({ $0 > 4})
+        print(filteredArr)
+        
+        let arr2 = [String]()
+        print(arr2)
+        
+        let dict = [String:Double]()
+        print(dict)
+        
         let range = arr[3...4]
         let range2 = arr[3..<4]
         print(range)
@@ -40,7 +53,6 @@ class ViewController: UIViewController {
             doub = Double.abs(-5.6)
         }
         
-        
         self.storedProp = 45.7
         self.storedProp = 34.5
         
@@ -51,7 +63,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    var result = 0.0
+    lazy var result = 0.0 // Not created until somebody asks for it
     
     var storedProp : Double {
         willSet {
