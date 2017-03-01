@@ -27,10 +27,16 @@ class ViewController: UIViewController {
         print(tuple.int)
         print(self.getTuple().doub)
         
-        let arr = [2, 5.51, 5, 7, 4]
+        var arr = [2, 5.51, 5, 7, 4]
         for element in arr {
             print(element)
         }
+        
+        // Arrays are copied by value
+        var arrCopy = arr
+        arrCopy.append(5.6)
+        print(arr)
+        print(arrCopy)
         
         let filteredArr = arr.filter({ $0 > 4})
         print(filteredArr)
@@ -44,9 +50,13 @@ class ViewController: UIViewController {
         let arr2 = [String]()
         print(arr2)
         
+        // Dictionaries are copied by value
         var dict = [String:Double]()
-        print(dict)
         dict["key"] = 65.8
+        var dictCopy = dict
+        dictCopy["keyCopy"] = 78.67
+        print(dict)
+        print(dictCopy)
         for (key, value) in dict {
             print( "\(key) \(value)")
         }
@@ -55,6 +65,14 @@ class ViewController: UIViewController {
         let range2 = arr[3..<4]
         print(range)
         print(range2)
+        
+        // Classes are copied by reference
+        let project = Project(param: 56)
+        let project2 = project
+        project2.param = 89.0
+        print(project.description())
+        print(project2.description())
+        
         
         self.naming(externalName: "Names in function")
         
@@ -93,6 +111,17 @@ class ViewController: UIViewController {
     }
 }
 
+class Project {
+    var param = 6.7
+    init(param: Double) {
+        self.param = param
+    }
+    
+    func description() -> String {
+        return "Project \(self.param)"
+    }
+}
+
 // Function override in subclass
 class SubViewController : ViewController {
     override func naming(externalName internalName: String) {
@@ -103,7 +132,7 @@ class SubViewController : ViewController {
 // Final function override in subclass
 class SubSubViewController : SubViewController {
     final override func naming(externalName internalName: String) {
-        print(internalName + " override")
+        print(internalName + " final override")
     }
 }
 
