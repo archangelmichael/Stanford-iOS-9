@@ -8,14 +8,6 @@
 
 import UIKit
 
-enum Operation : String {
-    case Add = "+",
-    Remove = "-",
-    Multiply = "*",
-    Divide = "/",
-    Percent = "%"
-}
-
 class CalculatorVC: UIViewController {
 
     @IBOutlet weak var lblResult: UILabel!
@@ -142,17 +134,9 @@ class CalculatorVC: UIViewController {
                 let result = brain.getCalculatedResult(newInput: self.currentValue)
                 self.currentStrValue = String(result)
                 break
-            case "+",
-                 "-",
-                 "*",
-                 "/",
-                 "%":
-                brain.saveResult(newInput: self.currentValue)
+            default: // "+","-", "*", "/", "%"
+                brain.saveResult(newInput: self.currentValue, operation: operation)
                 self.clearCurrentInput()
-                brain.nextOperation = Operation.init(rawValue: operation)
-                break
-            default:
-                self.clearCalculation()
                 break
             }
         }
