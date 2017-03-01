@@ -12,7 +12,7 @@ class Triangle: UIView {
     
     var strokeColor : UIColor = UIColor.white
     var fillColor : UIColor = UIColor.white
-
+    
     convenience init(frame: CGRect, stroke: UIColor, fill: UIColor) {
         self.init(frame: frame)
         self.strokeColor = stroke
@@ -21,7 +21,7 @@ class Triangle: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.green
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,7 +35,7 @@ class Triangle: UIView {
         // Rect center coordinates
         let centerX = rect.width/2
         let centerY = rect.height/2
-    
+        
         let path = UIBezierPath()
         path.lineWidth = 2.0
         
@@ -52,9 +52,9 @@ class Triangle: UIView {
         
         let pointA = CGPoint(x: centerX, y: offset)
         let pointB = CGPoint(x: centerX + sqrt(3) * rectSide / 4,
-                         y: centerY + rectSide / 4)
+                             y: centerY + rectSide / 4)
         let pointC = CGPoint(x: centerX - sqrt(3) * rectSide / 4,
-                         y: centerY + rectSide / 4)
+                             y: centerY + rectSide / 4)
         
         path.move(to: pointA)
         path.addLine(to: pointB)
@@ -66,6 +66,31 @@ class Triangle: UIView {
         
         path.stroke()
         path.fill()
+        
+        path.addClip()
     }
-
+    
+    
+    static func drawRotatingTriangles(vc : UIViewController) {
+        
+        let triangle1 = Triangle(frame: CGRect(x: 50, y: 50, width: 200, height: 200),
+                                 stroke: UIColor.red,
+                                 fill: UIColor.blue)
+        vc.view.addSubview(triangle1)
+        triangle1.rotate360Degrees()
+        
+        
+        let triangle2 = Triangle(frame: CGRect(x: 50, y: 300, width: 100, height: 200),
+                                 stroke: UIColor.green,
+                                 fill: UIColor.yellow)
+        vc.view.addSubview(triangle2)
+        triangle2.rotate360Degrees()
+        
+        
+        let triangle3 = Triangle(frame: CGRect(x: 150, y: 300, width: 200, height: 100),
+                                 stroke: UIColor.blue,
+                                 fill: UIColor.red)
+        vc.view.addSubview(triangle3)
+        triangle3.rotate360Degrees()
+    }
 }

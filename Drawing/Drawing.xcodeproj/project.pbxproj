@@ -13,6 +13,7 @@
 		194BB59C1E66E5A900077CB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 194BB59B1E66E5A900077CB2 /* Assets.xcassets */; };
 		194BB59F1E66E5A900077CB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 194BB59D1E66E5A900077CB2 /* LaunchScreen.storyboard */; };
 		194BB5A81E66E61F00077CB2 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194BB5A71E66E61F00077CB2 /* Triangle.swift */; };
+		194BB5AB1E6710B200077CB2 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194BB5AA1E6710B100077CB2 /* FaceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		194BB59E1E66E5A900077CB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		194BB5A01E66E5A900077CB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		194BB5A71E66E61F00077CB2 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		194BB5AA1E6710B100077CB2 /* FaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				194BB5A71E66E61F00077CB2 /* Triangle.swift */,
+				194BB5AA1E6710B100077CB2 /* FaceView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				194BB5A81E66E61F00077CB2 /* Triangle.swift in Sources */,
 				194BB5971E66E5A800077CB2 /* ViewController.swift in Sources */,
 				194BB5951E66E5A800077CB2 /* AppDelegate.swift in Sources */,
+				194BB5AB1E6710B200077CB2 /* FaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
