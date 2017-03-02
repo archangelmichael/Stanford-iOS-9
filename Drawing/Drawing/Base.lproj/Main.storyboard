@@ -47,7 +47,7 @@
                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="mouthState">
-                                        <integer key="value" value="2"/>
+                                        <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="mouthOffset">
                                         <real key="value" value="0.5"/>
@@ -63,6 +63,9 @@
                             <constraint firstItem="Xm4-mm-apt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="u0E-Xl-9jv"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="faceView" destination="Xm4-mm-apt" id="6Yk-zr-qYy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

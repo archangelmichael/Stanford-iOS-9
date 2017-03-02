@@ -15,21 +15,20 @@ class FaceView: UIView {
     
     @IBInspectable
     var scale : CGFloat = 0.8 { didSet { setNeedsDisplay() } }
-    
     @IBInspectable
     var lineWidth : CGFloat = 2.0 { didSet { setNeedsDisplay() } }
     @IBInspectable
     var eyeRadiusOffset : CGFloat = 0.3{ didSet { setNeedsDisplay() } }
     @IBInspectable
     var eyeCenterOffset : CGFloat = 0.3{ didSet { setNeedsDisplay() } }
-    private var mouthOffset : CGFloat = 0.5
-    
     @IBInspectable
     var fillColor : UIColor = UIColor.green{ didSet { setNeedsDisplay() } }
     @IBInspectable
     var strokeColor : UIColor = UIColor.blue{ didSet { setNeedsDisplay() } }
     @IBInspectable
     var mouthState : Int = 0 { didSet { setNeedsDisplay() } } // 1 - smile, 0 - normal, -1 - fraun
+    
+    private var mouthOffset : CGFloat = 0.5
     
     private var faceRadius : CGFloat {
         return min(bounds.size.height, bounds.size.width)/2 * scale
