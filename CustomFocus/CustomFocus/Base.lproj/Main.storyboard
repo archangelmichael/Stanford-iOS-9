@@ -67,11 +67,28 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZC-g8-hl9">
+                                                <rect key="frame" x="60" y="271" width="200" height="40"/>
+                                                <color key="backgroundColor" red="0.0" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="3aM-i9-EJa"/>
+                                                    <constraint firstAttribute="height" constant="40" id="csW-OI-aC5"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="DROP DOWN">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onDrop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HGr-up-Apq"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="9hF-5i-dBo" firstAttribute="centerX" secondItem="dq0-eU-SPC" secondAttribute="centerX" id="1aZ-Qv-oDz"/>
                                             <constraint firstItem="3Rj-yS-g21" firstAttribute="centerX" secondItem="dq0-eU-SPC" secondAttribute="centerX" id="9yp-G9-Y9n"/>
+                                            <constraint firstItem="TZC-g8-hl9" firstAttribute="centerX" secondItem="dq0-eU-SPC" secondAttribute="centerX" id="Gde-Gg-bKb"/>
+                                            <constraint firstItem="TZC-g8-hl9" firstAttribute="top" secondItem="9hF-5i-dBo" secondAttribute="bottom" constant="39" id="Nbu-7Z-pzE"/>
                                             <constraint firstItem="A0v-pG-9Df" firstAttribute="top" secondItem="ywu-KE-Qlu" secondAttribute="bottom" constant="109" id="aRr-nm-XTA"/>
                                             <constraint firstItem="A0v-pG-9Df" firstAttribute="centerX" secondItem="dq0-eU-SPC" secondAttribute="centerX" id="h6E-A7-0fA"/>
                                             <constraint firstItem="ywu-KE-Qlu" firstAttribute="top" secondItem="9hF-5i-dBo" secondAttribute="bottom" constant="124" id="j3f-oG-lw9"/>
@@ -100,6 +117,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnDrop" destination="TZC-g8-hl9" id="kbY-XU-CEh"/>
                         <outlet property="vContent" destination="dq0-eU-SPC" id="3Oh-H8-j4y"/>
                         <outlet property="vScroll" destination="QX5-iO-pC1" id="gG5-Mn-JoW"/>
                         <outletCollection property="textFields" destination="3Rj-yS-g21" collectionClass="NSMutableArray" id="XyE-NA-hyf"/>
