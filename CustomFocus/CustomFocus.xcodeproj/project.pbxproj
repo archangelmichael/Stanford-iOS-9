@@ -12,6 +12,11 @@
 		190E80871E70368400F3029F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190E80851E70368400F3029F /* Main.storyboard */; };
 		190E80891E70368400F3029F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 190E80881E70368400F3029F /* Assets.xcassets */; };
 		190E808C1E70368400F3029F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190E808A1E70368400F3029F /* LaunchScreen.storyboard */; };
+		190E80951E71477D00F3029F /* DropItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E80941E71477D00F3029F /* DropItem.swift */; };
+		190E80971E7147BB00F3029F /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E80961E7147BB00F3029F /* DropDownView.swift */; };
+		190E80991E7147C900F3029F /* DropDownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E80981E7147C900F3029F /* DropDownView.xib */; };
+		190E809C1E714A7300F3029F /* DropDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E809A1E714A7300F3029F /* DropDownTableViewCell.swift */; };
+		190E809D1E714A7300F3029F /* DropDownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190E809B1E714A7300F3029F /* DropDownTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		190E80881E70368400F3029F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		190E808B1E70368400F3029F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		190E808D1E70368400F3029F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		190E80941E71477D00F3029F /* DropItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropItem.swift; sourceTree = "<group>"; };
+		190E80961E7147BB00F3029F /* DropDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
+		190E80981E7147C900F3029F /* DropDownView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropDownView.xib; sourceTree = "<group>"; };
+		190E809A1E714A7300F3029F /* DropDownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownTableViewCell.swift; sourceTree = "<group>"; };
+		190E809B1E714A7300F3029F /* DropDownTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropDownTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,11 @@
 				190E80931E7036A600F3029F /* Supporting Files */,
 				190E80831E70368400F3029F /* ViewController.swift */,
 				190E80851E70368400F3029F /* Main.storyboard */,
+				190E80941E71477D00F3029F /* DropItem.swift */,
+				190E80961E7147BB00F3029F /* DropDownView.swift */,
+				190E80981E7147C900F3029F /* DropDownView.xib */,
+				190E809A1E714A7300F3029F /* DropDownTableViewCell.swift */,
+				190E809B1E714A7300F3029F /* DropDownTableViewCell.xib */,
 			);
 			path = CustomFocus;
 			sourceTree = "<group>";
@@ -133,6 +148,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				190E808C1E70368400F3029F /* LaunchScreen.storyboard in Resources */,
+				190E80991E7147C900F3029F /* DropDownView.xib in Resources */,
+				190E809D1E714A7300F3029F /* DropDownTableViewCell.xib in Resources */,
 				190E80891E70368400F3029F /* Assets.xcassets in Resources */,
 				190E80871E70368400F3029F /* Main.storyboard in Resources */,
 			);
@@ -145,6 +162,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				190E80951E71477D00F3029F /* DropItem.swift in Sources */,
+				190E809C1E714A7300F3029F /* DropDownTableViewCell.swift in Sources */,
+				190E80971E7147BB00F3029F /* DropDownView.swift in Sources */,
 				190E80841E70368400F3029F /* ViewController.swift in Sources */,
 				190E80821E70368400F3029F /* AppDelegate.swift in Sources */,
 			);
@@ -312,6 +332,7 @@
 				190E80921E70368400F3029F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

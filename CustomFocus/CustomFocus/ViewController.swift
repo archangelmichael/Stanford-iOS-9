@@ -8,19 +8,10 @@
 
 import UIKit
 
-class DropItem {
-    var title: String
-    var value: Int
-    
-    init(title: String, value: Int) {
-        self.title = title
-        self.value = value
-    }
-}
+
 
 class ViewController: UIViewController {
 
-    
     @IBOutlet weak var vContent: UIView!
     @IBOutlet weak var vScroll: UIScrollView!
     
@@ -50,12 +41,36 @@ class ViewController: UIViewController {
         for tf in textFields {
             tf.delegate = self
         }
+        
+        
+        let view = DropDownView.instanceFromNib()
+        view.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        self.view.addSubview(view)
+    
     }
     
     func keyboardShown(notification: NSNotification) {
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         self.keyboardHeight = keyboardFrame.size.height
+    }
+    
+    @IBAction func onCustomDropdown(_ sender: UIButton) -> Void {
+        let dropdown = DropDownView.instanceFromNib()
+        dropdown.showIn(parentView: self.vContent,
+                        delegate: self,
+                        fromView: sender,
+                        withItems: [DropItem.init(title: "Item 1", value: 111),
+                                    DropItem.init(title: "Item 2", value: 125),
+                                    DropItem.init(title: "Item 3", value: 234),
+                                    DropItem.init(title: "Item 4", value: 765),
+                                    DropItem.init(title: "Item 5", value: 342),
+                                    DropItem.init(title: "Item 6", value: 654),
+                                    DropItem.init(title: "Item 7", value: 632),
+                                    DropItem.init(title: "Item 8", value: 321),
+                                    DropItem.init(title: "Item 9", value: 345),
+                                    ],
+                        withHeight: 100)
     }
     
     @IBAction func onDrop(_ sender: UIButton) {
@@ -93,6 +108,12 @@ class ViewController: UIViewController {
         }
     }
     
+}
+
+extension ViewController : DropDownDelegate {
+    func dropDownSelected(item: DropItem) {
+        print("Item selected : \(item.value)")
+    }
 }
 
 extension ViewController : UIPickerViewDelegate {
