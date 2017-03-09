@@ -19,6 +19,9 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var loading: UIActivityIndicatorView!
+    
+    
     fileprivate var imageView : UIImageView = UIImageView()
     
     var imageUrl : URL? {
@@ -38,17 +41,25 @@ class ViewController: UIViewController {
             self.imageView.image = newValue
             self.imageView.sizeToFit()
             self.vScroll?.contentSize = self.imageView.frame.size
+            self.loading?.stopAnimating()
         }
     }
     
     fileprivate func fetchImage() -> Void {
         if let url = self.imageUrl {
+            self.loading?.startAnimating()
             DispatchQueue.global().async(execute: {
                 do {
                     let data = try Data(contentsOf: url)
                     if let image = UIImage(data: data) {
                         DispatchQueue.main.async {
-                            self.image = image
+                            if url == self.imageUrl { // If it is still fetching the correct image
+                                self.image = image
+                            }
+                            else {
+                                self.loading?.stopAnimating()
+                                // Ignore result
+                            }
                         }
                     }
                 }
