@@ -23,13 +23,13 @@ class ViewController: UIViewController {
     let toolbarHeight : CGFloat = 40.0
     let keyboardTopMargin : CGFloat = 10.0
     
-    let dropRows : [DropItem] = [
-        DropItem(title: "Item 1", value: 1),
-        DropItem(title: "Item 2", value: 2),
-        DropItem(title: "Item 3", value: 3),
-        DropItem(title: "Item 4", value: 4),
-        DropItem(title: "Item 5", value: 5)
-    ]
+    var dropRows : [DropItem] {
+        get {
+            return DropItem.getDropItems(range: (3, 100), count: 7)
+        }
+    }
+    
+    let dropDown = DropDownView.instanceFromNib()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +41,6 @@ class ViewController: UIViewController {
         for tf in textFields {
             tf.delegate = self
         }
-        
-        
-        let view = DropDownView.instanceFromNib()
-        view.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        self.view.addSubview(view)
-    
     }
     
     func keyboardShown(notification: NSNotification) {
@@ -55,24 +49,15 @@ class ViewController: UIViewController {
         self.keyboardHeight = keyboardFrame.size.height
     }
     
+    // MARK: - CUSTOM DROPDOWN
     @IBAction func onCustomDropdown(_ sender: UIButton) -> Void {
-        let dropdown = DropDownView.instanceFromNib()
-        dropdown.showIn(parentView: self.vContent,
-                        delegate: self,
-                        fromView: sender,
-                        withItems: [DropItem.init(title: "Item 1", value: 111),
-                                    DropItem.init(title: "Item 2", value: 125),
-                                    DropItem.init(title: "Item 3", value: 234),
-                                    DropItem.init(title: "Item 4", value: 765),
-                                    DropItem.init(title: "Item 5", value: 342),
-                                    DropItem.init(title: "Item 6", value: 654),
-                                    DropItem.init(title: "Item 7", value: 632),
-                                    DropItem.init(title: "Item 8", value: 321),
-                                    DropItem.init(title: "Item 9", value: 345),
-                                    ],
-                        withHeight: 100)
+        self.dropDown.showIn(parentView: self.vContent,
+                             delegate: self,
+                             fromView: sender,
+                             withItems: self.dropRows)
     }
     
+    // MARK: - ACTION SHEET DROPDOWN
     @IBAction func onDrop(_ sender: UIButton) {
         let alert = UIAlertController(title: "My Alert",
                                       message: "This is an action sheet.",
@@ -107,7 +92,6 @@ class ViewController: UIViewController {
             print("\(title)")
         }
     }
-    
 }
 
 extension ViewController : DropDownDelegate {

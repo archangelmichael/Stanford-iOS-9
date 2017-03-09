@@ -22,15 +22,15 @@ class DropDownView : UIView {
     @IBOutlet weak var btnDone: UIBarButtonItem!
     
     var animationTime : Double = 0.5
+    var parentOffset : CGFloat = 2.0
     var dropDownItems : [DropItem] = []
     var isDisplayed : Bool = false
     
     private func setup() {
         self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.darkGray.cgColor
+        self.layer.borderColor = UIColor.lightGray.cgColor
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
-        
         
         self.tvItems.dataSource = self
         self.tvItems.delegate = self
@@ -69,11 +69,13 @@ class DropDownView : UIView {
             self.setItems(items: items!)
         }
         
+        self.backgroundColor = anchorView.backgroundColor
         self.frame = CGRect(x: anchorView.frame.origin.x,
-                            y: anchorView.frame.origin.y + anchorView.frame.size.height + 5,
+                            y: anchorView.frame.origin.y + anchorView.frame.size.height + self.parentOffset,
                             width: anchorView.frame.size.width,
                             height: height)
         self.alpha = 0.0
+        
         parentView.addSubview(self)
         UIView.animate(withDuration: self.animationTime) {
             self.alpha = 1.0
