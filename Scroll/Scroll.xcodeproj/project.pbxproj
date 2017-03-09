@@ -37,6 +37,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		190E809E1E7181AA00F3029F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				194BB6021E6D674600077CB2 /* AppDelegate.swift */,
+				194BB6091E6D674600077CB2 /* Assets.xcassets */,
+				194BB60B1E6D674600077CB2 /* LaunchScreen.storyboard */,
+				194BB60E1E6D674600077CB2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		194BB5F61E6D674600077CB2 = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +67,9 @@
 		194BB6011E6D674600077CB2 /* Scroll */ = {
 			isa = PBXGroup;
 			children = (
-				194BB6021E6D674600077CB2 /* AppDelegate.swift */,
+				190E809E1E7181AA00F3029F /* Supporting Files */,
 				194BB6041E6D674600077CB2 /* ViewController.swift */,
 				194BB6061E6D674600077CB2 /* Main.storyboard */,
-				194BB6091E6D674600077CB2 /* Assets.xcassets */,
-				194BB60B1E6D674600077CB2 /* LaunchScreen.storyboard */,
-				194BB60E1E6D674600077CB2 /* Info.plist */,
 				190E80421E6D7EB100F3029F /* ImagesTableViewController.swift */,
 			);
 			path = Scroll;

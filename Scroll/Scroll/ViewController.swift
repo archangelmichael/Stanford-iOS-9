@@ -24,7 +24,9 @@ class ViewController: UIViewController {
     var imageUrl : URL? {
         didSet {
             self.image = nil
-            self.fetchImage()
+            if self.view.window != nil { // If view is on screen
+                self.fetchImage()
+            }
         }
     }
     
@@ -41,14 +43,18 @@ class ViewController: UIViewController {
     
     fileprivate func fetchImage() -> Void {
         if let url = self.imageUrl {
-            do {
-                let data = try Data(contentsOf: url)
-                if let image = UIImage(data: data) {
-                    self.image = image
+            DispatchQueue.global().async(execute: {
+                do {
+                    let data = try Data(contentsOf: url)
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.image = image
+                        }
+                    }
                 }
-            }
-            catch {
-            }
+                catch {
+                }
+            })
         }
     }
     
@@ -56,6 +62,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.vScroll.addSubview(imageView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.image == nil {
+            self.fetchImage()
+        }
     }
 
 }
