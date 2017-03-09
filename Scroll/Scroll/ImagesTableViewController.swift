@@ -49,7 +49,19 @@ class ImagesTableViewController: UITableViewController  {
         self.selectedImage = self.imageUrls[indexPath.row]
         //Perform selection
         tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: "showImage", sender: self)
+        
+        // First option use segue
+        // self.performSegue(withIdentifier: "showImage", sender: self)
+        
+        // Second option reuse details vc
+        if let vc = splitViewController?.viewControllers.last as? ViewController {
+            if self.selectedImage != nil {
+                vc.imageUrl = URL(string: self.selectedImage!)
+            }
+        }
+        else {
+            self.performSegue(withIdentifier: "showImage", sender: self)
+        }
     }
 
 
