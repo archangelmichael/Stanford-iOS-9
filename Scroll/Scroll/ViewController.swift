@@ -12,11 +12,14 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var vScroll: UIScrollView! {
         didSet {
-            self.vScroll?.contentSize = self.imageView.frame.size 
+            self.vScroll?.contentSize = self.imageView.frame.size
+            self.vScroll?.delegate = self
+            self.vScroll?.maximumZoomScale = 2.0
+            self.vScroll?.minimumZoomScale = 0.5
         }
     }
     
-    private var imageView : UIImageView = UIImageView()
+    fileprivate var imageView : UIImageView = UIImageView()
     
     var imageUrl : URL? {
         didSet {
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private var image : UIImage? {
+    fileprivate var image : UIImage? {
         get {
             return self.imageView.image
         }
@@ -36,7 +39,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func fetchImage() -> Void {
+    fileprivate func fetchImage() -> Void {
         if let url = self.imageUrl {
             do {
                 let data = try Data(contentsOf: url)
@@ -55,5 +58,11 @@ class ViewController: UIViewController {
         self.vScroll.addSubview(imageView)
     }
 
+}
+
+extension ViewController : UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+         return self.imageView
+    }
 }
 
