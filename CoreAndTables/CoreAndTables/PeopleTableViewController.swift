@@ -14,7 +14,7 @@ class PeopleTableViewController: UITableViewController {
     @IBOutlet weak var segment: UISegmentedControl!
     
     var classPeople : [PersonClass] = PersonClass.getSome()
-    var corePeople : [String] = []
+    var corePeople : [NSManagedObject] = []
     
     var usingCoreData : Bool = false {
         didSet {
@@ -24,6 +24,23 @@ class PeopleTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        if #available(iOS 10.0, *) {
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Person")
+            
+            do {
+                self.corePeople = try managedContext.fetch(fetchRequest)
+            }
+            catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        }
         
         self.segment.selectedSegmentIndex = 0
         
@@ -48,12 +65,13 @@ class PeopleTableViewController: UITableViewController {
                                         guard let tfName = alert.textFields?.first,
                                             let name = tfName.text,
                                             let tfAge = alert.textFields?.last,
-                                            let age = Int(tfAge.text!) else {
+                                            let age = Int(tfAge.text!),
+                                            age > 0 && age < 100 else {
                                                 return
                                         }
                                         
                                         if self.usingCoreData {
-                                            self.corePeople.append(name)
+                                            self.save(name: name)
                                         }
                                         else {
                                             let person = PersonClass(name: name,
@@ -76,13 +94,36 @@ class PeopleTableViewController: UITableViewController {
         alert.addTextField { (tf) in
             tf.tag = 2
             tf.placeholder = "age"
-            tf.keyboardType = .numberPad
+            tf.keyboardType = .phonePad
         }
         
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         
         present(alert, animated: true)
+    }
+    
+    func save(name: String) {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        if #available(iOS 10.0, *) {
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Person",
+                                                    in: managedContext)!
+            let person = NSManagedObject(entity: entity,
+                                         insertInto: managedContext)
+            person.setValue(name, forKeyPath: "name")
+            do {
+                try managedContext.save()
+                self.corePeople.append(person)
+            }
+            catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
     }
     
     @IBAction func changeModel(_ sender: UISegmentedControl) {
@@ -107,7 +148,7 @@ class PeopleTableViewController: UITableViewController {
             
             if let cell = reuseCell as? NameTableViewCell {
                 let person = self.corePeople[indexPath.row]
-                cell.lblName.text = person
+                cell.lblName.text = person.value(forKeyPath: "name") as? String
             }
             
             return reuseCell
@@ -154,7 +195,23 @@ class PeopleTableViewController: UITableViewController {
                             forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             if self.usingCoreData {
+                let person = self.corePeople[indexPath.row]
                 self.corePeople.remove(at: indexPath.row)
+                guard let appDelegate =
+                    UIApplication.shared.delegate as? AppDelegate else {
+                        return
+                }
+                
+                if #available(iOS 10.0, *) {
+                    let managedContext = appDelegate.persistentContainer.viewContext
+                    managedContext.delete(person)
+                    do {
+                        try managedContext.save()
+                    }
+                    catch let error as NSError {
+                        print("Could not delete. \(error), \(error.userInfo)")
+                    }
+                }
             }
             else {
                 self.classPeople.remove(at: indexPath.row)
