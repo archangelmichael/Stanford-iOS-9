@@ -13,8 +13,9 @@
 		190E80B61E71A25600F3029F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 190E80B51E71A25600F3029F /* Assets.xcassets */; };
 		190E80B91E71A25600F3029F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190E80B71E71A25600F3029F /* LaunchScreen.storyboard */; };
 		190E80C21E71A71400F3029F /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E80C11E71A71400F3029F /* PeopleTableViewController.swift */; };
-		190E80C41E71A7C000F3029F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E80C31E71A7C000F3029F /* Person.swift */; };
+		190E80C41E71A7C000F3029F /* PersonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E80C31E71A7C000F3029F /* PersonClass.swift */; };
 		190E80C61E72A07B00F3029F /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E80C51E72A07B00F3029F /* PersonTableViewCell.swift */; };
+		190E80CA1E72D56200F3029F /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E80C91E72D56200F3029F /* NameTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +27,9 @@
 		190E80B81E71A25600F3029F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		190E80BA1E71A25600F3029F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		190E80C11E71A71400F3029F /* PeopleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
-		190E80C31E71A7C000F3029F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		190E80C31E71A7C000F3029F /* PersonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonClass.swift; sourceTree = "<group>"; };
 		190E80C51E72A07B00F3029F /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
+		190E80C91E72D56200F3029F /* NameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +65,9 @@
 				190E80C01E71A6E100F3029F /* Supporting Files */,
 				190E80AF1E71A25600F3029F /* Main.storyboard */,
 				190E80C11E71A71400F3029F /* PeopleTableViewController.swift */,
-				190E80C31E71A7C000F3029F /* Person.swift */,
+				190E80C31E71A7C000F3029F /* PersonClass.swift */,
 				190E80C51E72A07B00F3029F /* PersonTableViewCell.swift */,
+				190E80C91E72D56200F3029F /* NameTableViewCell.swift */,
 			);
 			path = CoreAndTables;
 			sourceTree = "<group>";
@@ -154,10 +157,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				190E80CA1E72D56200F3029F /* NameTableViewCell.swift in Sources */,
 				190E80C21E71A71400F3029F /* PeopleTableViewController.swift in Sources */,
 				190E80B41E71A25600F3029F /* CoreAndTables.xcdatamodeld in Sources */,
 				190E80C61E72A07B00F3029F /* PersonTableViewCell.swift in Sources */,
-				190E80C41E71A7C000F3029F /* Person.swift in Sources */,
+				190E80C41E71A7C000F3029F /* PersonClass.swift in Sources */,
 				190E80AC1E71A25600F3029F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

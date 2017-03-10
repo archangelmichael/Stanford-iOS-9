@@ -18,7 +18,7 @@ class PersonTableViewCell: UITableViewCell {
     
     @IBOutlet weak var btnDone: UIButton!
 
-    var person : Person? {
+    var person : PersonClass? {
         didSet {
             self.updateUI()
         }
