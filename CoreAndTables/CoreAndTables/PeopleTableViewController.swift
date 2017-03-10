@@ -33,7 +33,9 @@ class PeopleTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tableView.estimatedRowHeight = 60.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     @IBAction func onAdd(_ sender: UIBarButtonItem) {
@@ -74,11 +76,13 @@ class PeopleTableViewController: UITableViewController {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
         return self.people.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let reuseCell = tableView.dequeueReusableCell(withIdentifier: "PersonCell",
                                                       for: indexPath)
 
@@ -103,7 +107,24 @@ class PeopleTableViewController: UITableViewController {
                                   with: UITableViewRowAnimation.fade)
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt
+        indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCellEditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            self.people.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath],
+                                      with: UITableViewRowAnimation.fade)
+        }
     }
 }
