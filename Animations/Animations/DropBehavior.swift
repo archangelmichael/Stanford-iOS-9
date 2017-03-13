@@ -17,20 +17,30 @@ class DropBehavior: UIDynamicBehavior {
         return collider
     }()
     
+    private let itemBehavior : UIDynamicItemBehavior = {
+        let dib = UIDynamicItemBehavior()
+        dib.allowsRotation = false
+        dib.elasticity = 0.3
+        return dib
+    }()
+    
     override init() {
         super.init()
         
         self.addChildBehavior(self.gravity)
         self.addChildBehavior(self.collider)
+        self.addChildBehavior(self.itemBehavior)
     }
     
     func addItem(item: UIDynamicItem) -> Void {
         self.gravity.addItem(item)
         self.collider.addItem(item)
+        self.itemBehavior.addItem(item)
     }
     
     func removeItem(item: UIDynamicItem) -> Void {
         self.gravity.removeItem(item)
         self.collider.removeItem(item)
+        self.itemBehavior.removeItem(item)
     }
 }

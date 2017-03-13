@@ -11,6 +11,13 @@ import UIKit
 class DropViewController: UIViewController {
     @IBOutlet weak var gameView: DropView! {
         didSet {
+            Timer.scheduledTimer(timeInterval: 0.1,
+                                 target: self,
+                                 selector: #selector(fillWithDrops),
+                                 userInfo: nil,
+                                 repeats: true)
+            
+            return;
             let tapGuesture = UITapGestureRecognizer(target: self,
                                                      action: #selector(addDrop(recognizer:)))
             self.gameView.addGestureRecognizer(tapGuesture)
@@ -21,6 +28,10 @@ class DropViewController: UIViewController {
         if recognizer.state == .ended {
             self.gameView.addDrop()
         }
+    }
+    
+    func fillWithDrops() -> Void {
+        self.gameView.addDrop()
     }
 
     override func viewDidLoad() {
