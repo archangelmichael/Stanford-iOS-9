@@ -10,7 +10,7 @@ import UIKit
 
 class DropViewController: UIViewController {
     
-    let dropMode : DropMode = .hitIt
+    let dropMode : DropMode = .normal
     
     @IBOutlet weak var gameView: DropView! {
         didSet {
@@ -23,9 +23,13 @@ class DropViewController: UIViewController {
                                      repeats: true)
                 break
             case .normal:
-                let tapGuesture = UITapGestureRecognizer(target: self,
+                let tapGesture = UITapGestureRecognizer(target: self,
                                                          action: #selector(addDrop(recognizer:)))
-                self.gameView.addGestureRecognizer(tapGuesture)
+                self.gameView.addGestureRecognizer(tapGesture)
+                
+                let grabGesture = UIPanGestureRecognizer(target: self.gameView,
+                                                         action: #selector(DropView.grabDrop(recognizer:)))
+                self.gameView.addGestureRecognizer(grabGesture)
             }
         }
     }

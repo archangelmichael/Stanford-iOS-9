@@ -14,22 +14,7 @@ enum DropMode : Int {
 
 class DropView: NamedView, UIDynamicAnimatorDelegate {
     
-    var dropMode : DropMode = DropMode.normal
-    
-    private var drops : [UIView] = []
-    
-    private lazy var animator : UIDynamicAnimator = {
-       let animator = UIDynamicAnimator(referenceView: self)
-        animator.delegate = self
-        return animator
-    }()
-    
-    func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
-        self.removeFullRows()
-    }
-    
-    private let dropBehavior = DropBehavior()
-    
+    // MARK: - General parameters
     var animating : Bool = false {
         didSet {
             if self.animating {
@@ -40,7 +25,7 @@ class DropView: NamedView, UIDynamicAnimatorDelegate {
             }
         }
     }
-
+    
     private let dropsPerRow = 10
     
     private var dropSize : CGSize {
@@ -48,6 +33,57 @@ class DropView: NamedView, UIDynamicAnimatorDelegate {
         return CGSize(width: size, height: size)
     }
     
+    private lazy var animator : UIDynamicAnimator = {
+        let animator = UIDynamicAnimator(referenceView: self)
+        animator.delegate = self
+        return animator
+    }()
+    
+    func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
+        self.removeFullRows()
+    }
+    
+    private let dropBehavior = DropBehavior()
+    
+    // MARK: - Modes
+    var dropMode : DropMode = DropMode.normal
+    private var drops : [UIView] = []
+
+    
+    // MARK - ATTACHMENT
+    private var lastDrop : UIView?
+    
+    private var attachment : UIAttachmentBehavior? {
+        willSet {
+            if attachment != nil {
+                self.animator.removeBehavior(attachment!)
+            }
+        }
+        didSet {
+            if attachment != nil {
+                self.animator.addBehavior(attachment!)
+            }
+        }
+    }
+    
+    func grabDrop(recognizer: UIPanGestureRecognizer) {
+        let gesturePoint = recognizer.location(in: self)
+        switch recognizer.state {
+        case .began: // Set attachment
+            if let drop = self.lastDrop,
+                drop.superview != nil {
+                self.attachment = UIAttachmentBehavior(item: drop, attachedToAnchor: gesturePoint)
+            }
+            
+            self.lastDrop = nil
+        case .changed: // Change attachment anchor
+            self.attachment?.anchorPoint = gesturePoint
+        default:
+            self.attachment = nil
+        }
+    }
+    
+    // MARK: - Center Collider
     private struct PathNames {
         static let Center = "Center"
     }
@@ -55,13 +91,14 @@ class DropView: NamedView, UIDynamicAnimatorDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        // Add center collider
         let centerPath = UIBezierPath(ovalIn: CGRect(center: bounds.mid, size: dropSize))
         self.dropBehavior.addBoundry(name: PathNames.Center,
                                       path: centerPath)
         self.besierPaths[PathNames.Center] = centerPath
     }
     
-    
+    // Add new drop
     func addDrop() -> Void {
         var frame = CGRect(origin: .zero, size: self.dropSize)
         frame.origin.x = CGFloat.random(max: self.dropsPerRow) * self.dropSize.width
@@ -77,8 +114,13 @@ class DropView: NamedView, UIDynamicAnimatorDelegate {
         self.addSubview(drop)
         self.dropBehavior.addItem(item: drop)
         self.drops.append(drop)
+        
+        if self.dropMode == .normal {
+            self.lastDrop = drop
+        }
     }
     
+    // Remove drops with tapped drop color when tapped
     func removeDrop(recognizer: UITapGestureRecognizer) -> Void {
         if let drop = recognizer.view {
             for currentDrop in self.drops {
@@ -90,6 +132,7 @@ class DropView: NamedView, UIDynamicAnimatorDelegate {
         }
     }
     
+    // Checks for full rows and removes them
     func removeFullRows() -> Void {
         var dropsToRemove : [UIView] = []
         
