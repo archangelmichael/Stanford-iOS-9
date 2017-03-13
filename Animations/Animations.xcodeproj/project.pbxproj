@@ -15,6 +15,7 @@
 		190E81121E76C01E00F3029F /* DropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E81111E76C01E00F3029F /* DropView.swift */; };
 		190E81141E76C36D00F3029F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E81131E76C36D00F3029F /* Extensions.swift */; };
 		190E81161E76CB2F00F3029F /* DropBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E81151E76CB2F00F3029F /* DropBehavior.swift */; };
+		190E81181E76DD8400F3029F /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190E81171E76DD8400F3029F /* NamedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		190E81111E76C01E00F3029F /* DropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
 		190E81131E76C36D00F3029F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		190E81151E76CB2F00F3029F /* DropBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropBehavior.swift; sourceTree = "<group>"; };
+		190E81171E76DD8400F3029F /* NamedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				190E81111E76C01E00F3029F /* DropView.swift */,
 				190E81151E76CB2F00F3029F /* DropBehavior.swift */,
 				190E81131E76C36D00F3029F /* Extensions.swift */,
+				190E81171E76DD8400F3029F /* NamedView.swift */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				190E81181E76DD8400F3029F /* NamedView.swift in Sources */,
 				190E81161E76CB2F00F3029F /* DropBehavior.swift in Sources */,
 				190E80FD1E76BF5400F3029F /* AppDelegate.swift in Sources */,
 				190E81101E76C01200F3029F /* DropViewController.swift in Sources */,

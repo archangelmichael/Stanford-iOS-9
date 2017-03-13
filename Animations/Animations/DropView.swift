@@ -12,7 +12,7 @@ enum DropMode : Int {
     case normal, hitIt
 }
 
-class DropView: UIView, UIDynamicAnimatorDelegate {
+class DropView: NamedView, UIDynamicAnimatorDelegate {
     
     var dropMode : DropMode = DropMode.normal
     
@@ -47,6 +47,20 @@ class DropView: UIView, UIDynamicAnimatorDelegate {
         let size = bounds.size.width / CGFloat(self.dropsPerRow)
         return CGSize(width: size, height: size)
     }
+    
+    private struct PathNames {
+        static let Center = "Center"
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let centerPath = UIBezierPath(ovalIn: CGRect(center: bounds.mid, size: dropSize))
+        self.dropBehavior.addBoundry(name: PathNames.Center,
+                                      path: centerPath)
+        self.besierPaths[PathNames.Center] = centerPath
+    }
+    
     
     func addDrop() -> Void {
         var frame = CGRect(origin: .zero, size: self.dropSize)

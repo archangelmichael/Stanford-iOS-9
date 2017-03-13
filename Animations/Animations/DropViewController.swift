@@ -10,7 +10,7 @@ import UIKit
 
 class DropViewController: UIViewController {
     
-    let dropMode : DropMode = .normal
+    let dropMode : DropMode = .hitIt
     
     @IBOutlet weak var gameView: DropView! {
         didSet {
