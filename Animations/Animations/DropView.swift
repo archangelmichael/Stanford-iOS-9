@@ -57,11 +57,18 @@ class DropView: NamedView, UIDynamicAnimatorDelegate {
         willSet {
             if attachment != nil {
                 self.animator.removeBehavior(attachment!)
+                self.besierPaths[PathNames.Attachment] = nil
             }
         }
         didSet {
             if attachment != nil {
                 self.animator.addBehavior(attachment!)
+                self.attachment!.action = { [unowned self] in
+                    if let grabbedDrop = self.attachment!.items.first as? UIView {
+                        self.besierPaths[PathNames.Attachment] = UIBezierPath.lineFrom(from: self.attachment!.anchorPoint,
+                                                                                       to: grabbedDrop.center)
+                    }
+                }
             }
         }
     }
@@ -86,6 +93,7 @@ class DropView: NamedView, UIDynamicAnimatorDelegate {
     // MARK: - Center Collider
     private struct PathNames {
         static let Center = "Center"
+        static let Attachment = "Attachment"
     }
     
     override func layoutSubviews() {
