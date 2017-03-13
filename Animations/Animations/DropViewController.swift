@@ -9,18 +9,24 @@
 import UIKit
 
 class DropViewController: UIViewController {
+    
+    let dropMode : DropMode = .normal
+    
     @IBOutlet weak var gameView: DropView! {
         didSet {
-            Timer.scheduledTimer(timeInterval: 0.1,
-                                 target: self,
-                                 selector: #selector(fillWithDrops),
-                                 userInfo: nil,
-                                 repeats: true)
-            
-            return;
-            let tapGuesture = UITapGestureRecognizer(target: self,
-                                                     action: #selector(addDrop(recognizer:)))
-            self.gameView.addGestureRecognizer(tapGuesture)
+            switch self.dropMode {
+            case .hitIt:
+                Timer.scheduledTimer(timeInterval: 0.1,
+                                     target: self,
+                                     selector: #selector(fillWithDrops),
+                                     userInfo: nil,
+                                     repeats: true)
+                break
+            case .normal:
+                let tapGuesture = UITapGestureRecognizer(target: self,
+                                                         action: #selector(addDrop(recognizer:)))
+                self.gameView.addGestureRecognizer(tapGuesture)
+            }
         }
     }
     
@@ -37,6 +43,7 @@ class DropViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.gameView.dropMode = self.dropMode
         self.gameView.animating = true
     }
     

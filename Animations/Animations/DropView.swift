@@ -8,9 +8,15 @@
 
 import UIKit
 
+enum DropMode : Int {
+    case normal, hitIt
+}
+
 class DropView: UIView, UIDynamicAnimatorDelegate {
     
-    var drops : [UIView] = []
+    var dropMode : DropMode = DropMode.normal
+    
+    private var drops : [UIView] = []
     
     private lazy var animator : UIDynamicAnimator = {
        let animator = UIDynamicAnimator(referenceView: self)
@@ -48,9 +54,11 @@ class DropView: UIView, UIDynamicAnimatorDelegate {
         let drop = UIView(frame: frame)
         drop.backgroundColor = UIColor.random
         
-        let dropTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                     action: #selector(removeDrop(recognizer:)))
-        drop.addGestureRecognizer(dropTap)
+        if self.dropMode == DropMode.hitIt {
+            let dropTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                         action: #selector(removeDrop(recognizer:)))
+            drop.addGestureRecognizer(dropTap)
+        }
 
         self.addSubview(drop)
         self.dropBehavior.addItem(item: drop)
