@@ -326,6 +326,7 @@
 				190E80BF1E71A25600F3029F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
