@@ -23,6 +23,21 @@ enum Gender : String {
     }
 }
 
+struct Image {
+    static let Man : UIImage? = UIImage(named: "man")?.resizeImage(toSize: CGSize(width:40.0,
+                                                                                 height:40.0))
+    static let Woman : UIImage? = UIImage(named: "woman")?.resizeImage(toSize: CGSize(width:40.0,
+                                                                                     height:40.0))
+    static let Person : UIImage? = UIImage(named: "person")?.resizeImage(toSize: CGSize(width:40.0,
+                                                                                       height:40.0))
+    static let Red : UIImage? = UIImage(named: "red")?.resizeImage(toSize: CGSize(width:40.0,
+                                                                                 height:40.0))
+    static let Blue : UIImage? = UIImage(named: "blue")?.resizeImage(toSize: CGSize(width:40.0,
+                                                                                   height:40.0))
+    static let Green : UIImage? = UIImage(named: "green")?.resizeImage(toSize: CGSize(width:40.0,
+                                                                                     height:40.0))
+}
+
 class Dot : MKPointAnnotation {
     static private let maxLat : Double = 45.34
     static private let minLat : Double = 42.23
@@ -30,16 +45,20 @@ class Dot : MKPointAnnotation {
     static private let maxLon : Double = 45.23
     static private let minLon : Double = 42.23
     
+    var imageSize : Double = 40.0
+    
     var name : String
     var tags : [String] = []
     var gender : Gender
-    
     var avatar : UIImage? {
         get {
             switch self.gender {
-            case .Male: return  UIImage(named: "man")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate).resizeImage(toSize: CGSize(width: 20.0, height: 20.0))
-            case .Female:return  UIImage(named: "woman")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate).resizeImage(toSize: CGSize(width: 20.0, height: 20.0))
-            default:return  UIImage(named: "person")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate).resizeImage(toSize: CGSize(width: 20.0, height: 20.0))
+            case .Male:
+                return Image.Man
+            case .Female:
+                return Image.Woman
+            default:
+                return Image.Person
             }
         }
     }
@@ -47,9 +66,12 @@ class Dot : MKPointAnnotation {
     var image : UIImage? {
         get {
             switch self.gender {
-            case .Male: return UIImage(named: "blue")
-            case .Female: return  UIImage(named: "red")
-            default: return  UIImage(named: "green")
+            case .Male:
+                return Image.Blue
+            case .Female:
+                return Image.Red
+            default:
+                return Image.Green
             }
         }
     }
@@ -169,6 +191,10 @@ extension CLLocationCoordinate2D {
 
 public extension Double {
     
+    public static func logC(val: Double, forBase base: Double) -> Double {
+        return log(val)/log(base)
+    }
+    
     /// Returns a random floating point number between 0.0 and 1.0, inclusive.
     public static var random:Double {
         get {
@@ -178,10 +204,8 @@ public extension Double {
     
     /**
      Create a random number Double
-     
      - parameter min: Double
      - parameter max: Double
-     
      - returns: Double
      */
     public static func random(min: Double, max: Double) -> Double {
