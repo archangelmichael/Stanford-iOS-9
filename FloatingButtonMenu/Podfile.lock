@@ -1,0 +1,12 @@
+PODS:
+  - KCFloatingActionButton (2.2.0)
+
+DEPENDENCIES:
+  - KCFloatingActionButton
+
+SPEC CHECKSUMS:
+  KCFloatingActionButton: 8c71fa25774e422c8d407f82b4b27809d0cd5233
+
+PODFILE CHECKSUM: e63a568046d619ec7286063a9cb588af3ee84ef8
+
+COCOAPODS: 1.1.1
