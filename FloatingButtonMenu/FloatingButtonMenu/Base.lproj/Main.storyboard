@@ -45,19 +45,48 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="buttonImage" value="menu-off"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BfV-68-ohc">
+                                <rect key="frame" x="30" y="28" width="315" height="561"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OptionCell" textLabel="0VG-Vh-3cN" style="IBUITableViewCellStyleDefault" id="cD2-1c-c8E">
+                                        <rect key="frame" x="0.0" y="28" width="315" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cD2-1c-c8E" id="35F-jc-mbC">
+                                            <rect key="frame" x="0.0" y="0.0" width="315" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0VG-Vh-3cN">
+                                                    <rect key="frame" x="15" y="0.0" width="285" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="vOL-E6-tAb" firstAttribute="top" secondItem="BfV-68-ohc" secondAttribute="bottom" constant="8" id="5g0-Ae-FQf"/>
+                            <constraint firstItem="BfV-68-ohc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="JEv-AM-McZ"/>
+                            <constraint firstItem="BfV-68-ohc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="PTS-1C-wGh"/>
+                            <constraint firstAttribute="trailing" secondItem="BfV-68-ohc" secondAttribute="trailing" constant="30" id="bD7-hZ-pON"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vOL-E6-tAb" secondAttribute="bottom" constant="20" id="fBp-PJ-jkS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vOL-E6-tAb" secondAttribute="trailing" constant="20" id="up0-km-zGG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btnFloat" destination="vOL-E6-tAb" id="i1E-e2-O4Q"/>
+                        <outlet property="tvOptions" destination="BfV-68-ohc" id="DJV-Gq-bhZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="24.800000000000001" y="34.632683658170919"/>
         </scene>
     </scenes>
     <resources>

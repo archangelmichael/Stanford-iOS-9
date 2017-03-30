@@ -1,12 +1,18 @@
 PODS:
   - KCFloatingActionButton (2.2.0)
+  - Onboard (2.3.1)
+  - paper-onboarding (2.0.1)
 
 DEPENDENCIES:
   - KCFloatingActionButton
+  - Onboard
+  - paper-onboarding (~> 2.0.1)
 
 SPEC CHECKSUMS:
   KCFloatingActionButton: 8c71fa25774e422c8d407f82b4b27809d0cd5233
+  Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  paper-onboarding: a8e001214d9ce9decf78e160b3823f396dbd51ac
 
-PODFILE CHECKSUM: e63a568046d619ec7286063a9cb588af3ee84ef8
+PODFILE CHECKSUM: 761ce9d2ed3c31478ee47229d8447b1e1c480ae7
 
 COCOAPODS: 1.1.1
