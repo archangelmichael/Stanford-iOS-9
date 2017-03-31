@@ -280,7 +280,7 @@ class ViewController: UIViewController {
             weak var weakSelf = self
             OnboardingParentViewController.showOnboarding(from: self,
                                                           portraitImages: self.onboardingImages,
-                                                          landscapeImages: ["screen3", "screen3", "screen3"],
+                                                          landscapeImages: ["screen3", "screen3"],
                                                           titles: self.onboardingImages,
                                                           pageButtonTitle: "NEXT",
                                                           lastPageButtonTitle: "GO",

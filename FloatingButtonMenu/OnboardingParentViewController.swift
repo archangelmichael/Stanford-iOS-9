@@ -50,7 +50,7 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
             onboarding.pageTitles = titles
             onboarding.images = portraitImages
             onboarding.landscapeImages = portraitImages
-            if let landscapes = landscapeImages {
+            if let landscapes = landscapeImages, landscapeImages?.count == portraitImages.count {
                 onboarding.landscapeImages = landscapes
             }
             
