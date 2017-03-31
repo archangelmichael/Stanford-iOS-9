@@ -15,6 +15,7 @@ import Onboard
 enum Options : Int {
     case Paper = 0
     case Onboard = 1
+    case Custom = 2
     case AllCount
     
     func getTitle() -> String? {
@@ -23,6 +24,8 @@ enum Options : Int {
             return "Paper Onboarding"
         case .Onboard:
             return "Onboard"
+        case .Custom:
+            return "Custom"
         default:
             return "None"
         }
@@ -267,11 +270,29 @@ class ViewController: UIViewController {
                     }
             }
             
-            self.onboardingVC?.modalPresentationStyle = .overCurrentContext
+            self.onboardingVC?.modalPresentationStyle = .overFullScreen
             self.present(self.onboardingVC!, animated: true, completion: {
                 
             })
             
+            break
+        case .Custom:
+            weak var weakSelf = self
+            OnboardingParentViewController.showOnboarding(from: self,
+                                                          images: self.onboardingImages,
+                                                          titles: self.onboardingImages,
+                                                          pageButtonTitle: "NEXT",
+                                                          lastPageButtonTitle: "GO",
+                                                          dismissCallback:
+                {
+                    let alertVC = UIAlertController(title: "asdasd", message: "", preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: "OK",
+                                                    style: .default,
+                                                    handler: nil))
+                    weakSelf?.show(alertVC, sender: self)
+                    
+                    
+            })
             break
         default:
             print("Invalid type : \(type)");

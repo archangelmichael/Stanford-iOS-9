@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		025F8E15671F3A4E6A36CF4F /* Pods_FloatingButtonMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4FD9DD5C91643F6E76739A /* Pods_FloatingButtonMenu.framework */; };
+		191FDAE21E8D3F2D0019B882 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 191FDAE11E8D3F2D0019B882 /* Onboarding.storyboard */; };
+		191FDAE41E8D3F860019B882 /* OnboardingPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191FDAE31E8D3F860019B882 /* OnboardingPageContentViewController.swift */; };
+		191FDAE61E8D40F10019B882 /* OnboardingParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191FDAE51E8D40F10019B882 /* OnboardingParentViewController.swift */; };
 		1963C5451E89040300F484D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963C5441E89040300F484D7 /* AppDelegate.swift */; };
 		1963C5471E89040300F484D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963C5461E89040300F484D7 /* ViewController.swift */; };
 		1963C54A1E89040300F484D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1963C5481E89040300F484D7 /* Main.storyboard */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		191FDAE11E8D3F2D0019B882 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		191FDAE31E8D3F860019B882 /* OnboardingPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageContentViewController.swift; sourceTree = "<group>"; };
+		191FDAE51E8D40F10019B882 /* OnboardingParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingParentViewController.swift; sourceTree = "<group>"; };
 		1963C5411E89040300F484D7 /* FloatingButtonMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingButtonMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1963C5441E89040300F484D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1963C5461E89040300F484D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +46,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		191FDAE01E8D3EEB0019B882 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				191FDAE11E8D3F2D0019B882 /* Onboarding.storyboard */,
+				191FDAE31E8D3F860019B882 /* OnboardingPageContentViewController.swift */,
+				191FDAE51E8D40F10019B882 /* OnboardingParentViewController.swift */,
+			);
+			name = Onboarding;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		1963C5381E89040300F484D7 = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +78,7 @@
 		1963C5431E89040300F484D7 /* FloatingButtonMenu */ = {
 			isa = PBXGroup;
 			children = (
+				191FDAE01E8D3EEB0019B882 /* Onboarding */,
 				1963C5441E89040300F484D7 /* AppDelegate.swift */,
 				1963C5461E89040300F484D7 /* ViewController.swift */,
 				1963C5481E89040300F484D7 /* Main.storyboard */,
@@ -154,6 +172,7 @@
 				1963C54F1E89040300F484D7 /* LaunchScreen.storyboard in Resources */,
 				1963C54C1E89040300F484D7 /* Assets.xcassets in Resources */,
 				1963C54A1E89040300F484D7 /* Main.storyboard in Resources */,
+				191FDAE21E8D3F2D0019B882 /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,8 +231,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				191FDAE41E8D3F860019B882 /* OnboardingPageContentViewController.swift in Sources */,
 				1963C5471E89040300F484D7 /* ViewController.swift in Sources */,
 				1963C5451E89040300F484D7 /* AppDelegate.swift in Sources */,
+				191FDAE61E8D40F10019B882 /* OnboardingParentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +400,7 @@
 				1963C5551E89040300F484D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
