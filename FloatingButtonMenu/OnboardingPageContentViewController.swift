@@ -15,12 +15,14 @@ class OnboardingPageContentViewController: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     
     var pageIndex: Int?
-    var titleText : String!
-    var imageName : String!
+    var titleText : String?
+    
+    var landscapeImage : String!
+    var portraitImage : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ivBack.image = UIImage(named: imageName)
+        rotate()
         self.lblTitle.text = self.titleText
         self.lblTitle.alpha = 0.1
         UIView.animate(
@@ -29,6 +31,23 @@ class OnboardingPageContentViewController: UIViewController {
             self.lblTitle.alpha = 1.0
         })
         
+    }
+    
+    fileprivate func rotate() {
+        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+            self.ivBack.image = UIImage(named: self.landscapeImage)
+        }
+        
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+            self.ivBack.image = UIImage(named: self.portraitImage)
+        }
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection,
+                                 with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection,
+                             with: coordinator)
+        self.rotate()
     }
     
 

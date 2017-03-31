@@ -12,6 +12,8 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
     
     fileprivate var pageTitles : [String?] = []
     fileprivate var images : [String] = []
+    fileprivate var landscapeImages : [String] = []
+    
     fileprivate var dismissHandler : (()-> Void)? = nil
     fileprivate var btnSkipPageTitle: String?
     fileprivate var btnSkipLastPageTitle: String?
@@ -31,12 +33,13 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
     }
     
     class func showOnboarding(from: UIViewController,
-                               images: [String],
-                               titles: [String?],
-                               pageButtonTitle: String?,
-                               lastPageButtonTitle: String?,
-                               dismissCallback: (()-> Void)?) {
-        guard images.count == titles.count else {
+                              portraitImages: [String],
+                              landscapeImages: [String]?,
+                              titles: [String?],
+                              pageButtonTitle: String?,
+                              lastPageButtonTitle: String?,
+                              dismissCallback: (()-> Void)?) {
+        guard portraitImages.count == titles.count else {
             print("Page images and titles don't match")
             return
         }
@@ -44,8 +47,13 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
         let storyboard = UIStoryboard.init(name: onboardingStoryboardNameID, bundle: nil)
         let onboardingParent = storyboard.instantiateViewController(withIdentifier: "OnboardingParentVC")
         if let onboarding = onboardingParent as? OnboardingParentViewController {
-            onboarding.images = images
             onboarding.pageTitles = titles
+            onboarding.images = portraitImages
+            onboarding.landscapeImages = portraitImages
+            if let landscapes = landscapeImages {
+                onboarding.landscapeImages = landscapes
+            }
+            
             onboarding.btnSkipPageTitle = pageButtonTitle
             onboarding.btnSkipLastPageTitle = lastPageButtonTitle
             onboarding.dismissHandler = dismissCallback
@@ -154,7 +162,8 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
         
         let pageContentViewController = self.storyboard?.instantiateViewController(withIdentifier: self.onboardingContentID) as! OnboardingPageContentViewController
         
-        pageContentViewController.imageName = self.images[index]
+        pageContentViewController.portraitImage = self.images[index]
+        pageContentViewController.landscapeImage = self.landscapeImages[index]
         pageContentViewController.titleText = self.pageTitles[index]
         pageContentViewController.pageIndex = index
         return pageContentViewController
