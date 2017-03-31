@@ -15,16 +15,24 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
     fileprivate var landscapeImages : [String] = []
     
     fileprivate var dismissHandler : (()-> Void)? = nil
-    fileprivate var btnSkipPageTitle: String?
-    fileprivate var btnSkipLastPageTitle: String?
+    
+    fileprivate var contentOffset : CGFloat = 20.0
     
     static fileprivate let onboardingStoryboardNameID : String = "Onboarding"
     fileprivate let onboardingParentID : String = "PageViewController"
     fileprivate let onboardingContentID : String = "PageContentViewController"
     
     fileprivate var pageViewController : UIPageViewController!
+
+    fileprivate var pageBtnTag: Int = 0
+    fileprivate var skipBtnTitle: String?
+    fileprivate var pageBtnTitle: String?
+    fileprivate var lastPageBtnTitle: String?
+    fileprivate let closeBtnTag : Int = 999
+    fileprivate let defaultCloseBtnTitle : String = "Let's go"
     
     @IBOutlet fileprivate weak var btnSkip: UIButton!
+    @IBOutlet fileprivate weak var btnPage: UIButton!
     @IBOutlet fileprivate weak var vBackground: UIView!
     
     override func viewDidLoad() {
@@ -34,11 +42,14 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
     
     class func showOnboarding(from: UIViewController,
                               portraitImages: [String],
-                              landscapeImages: [String]?,
+                              landscapeImages: [String]? = nil,
                               titles: [String?],
-                              pageButtonTitle: String?,
-                              lastPageButtonTitle: String?,
-                              dismissCallback: (()-> Void)?) {
+                              pageBtnTitle: String? = nil,
+                              lastPageBtnTitle: String? = nil,
+                              skipBtnTitle: String? = nil,
+                              closeBtnTitle: String? = nil,
+                              offset: Bool = true,
+                              dismissCallback: (()-> Void)? = nil) {
         guard portraitImages.count == titles.count else {
             print("Page images and titles don't match")
             return
@@ -54,8 +65,25 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
                 onboarding.landscapeImages = landscapes
             }
             
-            onboarding.btnSkipPageTitle = pageButtonTitle
-            onboarding.btnSkipLastPageTitle = lastPageButtonTitle
+            onboarding.skipBtnTitle = skipBtnTitle
+            
+            if closeBtnTitle != nil { // Set page button as close button
+                onboarding.setPageButton(tag: onboarding.closeBtnTag,
+                                         title: closeBtnTitle,
+                                         lastTitle: nil)
+            }
+            else if lastPageBtnTitle == nil || lastPageBtnTitle == "" {
+                onboarding.setPageButton(tag: onboarding.closeBtnTag,
+                                         title: onboarding.defaultCloseBtnTitle,
+                                         lastTitle: nil)
+            }
+            else {
+                onboarding.setPageButton(tag: 0,
+                                         title: pageBtnTitle,
+                                         lastTitle: lastPageBtnTitle)
+            }
+            
+            onboarding.setContent(offset: offset ? 20.0: 0)
             onboarding.dismissHandler = dismissCallback
         }
         
@@ -63,6 +91,51 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
         from.present(onboardingParent,
                      animated: true,
                      completion: nil)
+    }
+    
+    fileprivate func setPageButton(tag: Int, title: String?, lastTitle: String?) {
+        self.pageBtnTag = tag
+        self.pageBtnTitle = title
+        
+        if lastTitle == nil || lastTitle == "" {
+            self.lastPageBtnTitle = title
+        }
+        else {
+            self.lastPageBtnTitle = lastTitle
+        }
+    }
+    
+    fileprivate func setContent(offset: CGFloat) {
+        self.contentOffset = offset
+    }
+    
+    @IBAction func onPage(_ sender: UIButton) {
+        if sender.tag == closeBtnTag {
+            self.closeOnboarding()
+            return;
+        }
+        
+        if let pageIndex = (self.pageViewController.viewControllers?.first as! OnboardingPageContentViewController).pageIndex {
+            if pageIndex >= self.images.count - 1 { // Clicked next on last screen
+                self.closeOnboarding()
+            }
+            else {
+                let pageContentViewController = self.viewController(atIndex: pageIndex + 1)
+                self.pageViewController.setViewControllers([pageContentViewController!],
+                                                           direction: UIPageViewControllerNavigationDirection.forward,
+                                                           animated: true,
+                                                           completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func onSkip(_ sender: UIButton) {
+        self.closeOnboarding()
+    }
+    
+    func closeOnboarding() {
+        self.dismiss(animated: true,
+                     completion: self.dismissHandler)
     }
     
     @IBAction fileprivate func swipeLeft(sender: AnyObject) {
@@ -79,6 +152,7 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
         /* Getting the page View controller */
         self.pageViewController = self.storyboard?.instantiateViewController(withIdentifier: self.onboardingParentID) as! UIPageViewController
         self.pageViewController.dataSource = self
+        self.pageViewController.delegate = self
         
         let pageContentViewController = self.viewController(atIndex: 0)
         self.pageViewController.setViewControllers([pageContentViewController!],
@@ -86,14 +160,19 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
                                                    animated: true,
                                                    completion: nil)
         
+        self.btnSkip.setBtn(title: self.skipBtnTitle)
+        self.btnPage.tag = self.pageBtnTag
+        self.changePageBtnTitle(forIndex: 0)
+        
         /* We are substracting 30 because we have a start again button whose height is 30*/
         self.pageViewController.view.frame = CGRect(x: 0,
-                                                    y: 20,
+                                                    y: self.contentOffset,
                                                     width: self.view.frame.width,
-                                                    height: self.view.frame.height - 20)
+                                                    height: self.view.frame.height - self.contentOffset)
         
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
+        self.view.bringSubview(toFront: self.btnPage)
         self.view.bringSubview(toFront: self.btnSkip)
         self.pageViewController.didMove(toParentViewController: self)
     }
@@ -106,30 +185,29 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
                                                    completion: nil)
     }
     
-    @IBAction fileprivate func startOnboarding(_ sender: UIButton) {
-        if let pageIndex = (self.pageViewController.viewControllers?.first as! OnboardingPageContentViewController).pageIndex {
-            if pageIndex >= self.images.count - 1 { // Clicked next on last screen
-                self.dismiss(animated: true,
-                             completion: self.dismissHandler)
-            }
-            else {
-                let pageContentViewController = self.viewController(atIndex: pageIndex + 1)
-                self.pageViewController.setViewControllers([pageContentViewController!],
-                                                           direction: UIPageViewControllerNavigationDirection.forward,
-                                                           animated: true,
-                                                           completion: nil)
-            }
-        }
-    }
+//    @IBAction fileprivate func startOnboarding(_ sender: UIButton) {
+//        if let pageIndex = (self.pageViewController.viewControllers?.first as! OnboardingPageContentViewController).pageIndex {
+//            if pageIndex >= self.images.count - 1 { // Clicked next on last screen
+//                self.dismiss(animated: true,
+//                             completion: self.dismissHandler)
+//            }
+//            else {
+//                let pageContentViewController = self.viewController(atIndex: pageIndex + 1)
+//                self.pageViewController.setViewControllers([pageContentViewController!],
+//                                                           direction: UIPageViewControllerNavigationDirection.forward,
+//                                                           animated: true,
+//                                                           completion: nil)
+//            }
+//        }
+//    }
     
-    fileprivate func changeSkipButton(title: String? = nil,
-                                      forIndex index: Int) {
-        if let btnTitle = title {
-            self.btnSkip.setTitle(btnTitle, for: .normal)
+    fileprivate func changePageBtnTitle(forIndex index: Int) {
+        if self.btnPage.tag == self.closeBtnTag {
+            self.btnPage.setBtn(title: self.pageBtnTitle)
         }
-        else {
-            let btnTitle = index >= self.images.count - 1 ? self.btnSkipLastPageTitle : self.btnSkipPageTitle
-            self.btnSkip.setTitle(btnTitle, for: .normal)
+        else{
+            let btnTitle = index >= self.images.count - 1 ? self.lastPageBtnTitle : self.pageBtnTitle
+            self.btnPage.setBtn(title: btnTitle)
         }
     }
     
@@ -175,12 +253,34 @@ class OnboardingParentViewController: UIViewController, UIPageViewControllerData
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        if let pageIndex = (pageViewController.viewControllers?.first as! OnboardingPageContentViewController).pageIndex {
-            self.changeSkipButton(forIndex: pageIndex)
-            return pageIndex
+        if let currentPage = pageViewController.viewControllers?.first as? OnboardingPageContentViewController {
+            if let page = currentPage.pageIndex {
+                self.changePageBtnTitle(forIndex: page)
+                return page
+            }
         }
         
-        self.changeSkipButton(title: "", forIndex: 0)
+        self.changePageBtnTitle(forIndex: 0)
         return 0
+    }
+    
+    
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            willTransitionTo pendingViewControllers: [UIViewController]) {
+        if let nextVC = pendingViewControllers.first as? OnboardingPageContentViewController {
+            if let page = nextVC.pageIndex {
+                self.changePageBtnTitle(forIndex: page)
+                return;
+            }
+        }
+        
+        self.changePageBtnTitle(forIndex: 0)
+    }
+}
+
+extension UIButton {
+    func setBtn(title: String?) {
+        self.setTitle(title, for: .normal)
+        self.isHidden = title == nil || title == ""
     }
 }

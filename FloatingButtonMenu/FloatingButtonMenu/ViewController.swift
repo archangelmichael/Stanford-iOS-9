@@ -278,12 +278,16 @@ class ViewController: UIViewController {
             break
         case .Custom:
             weak var weakSelf = self
+            
             OnboardingParentViewController.showOnboarding(from: self,
                                                           portraitImages: self.onboardingImages,
-                                                          landscapeImages: ["screen3", "screen3"],
+                                                          //landscapeImages: ["screen3", "screen3", "screen3"],
                                                           titles: self.onboardingImages,
-                                                          pageButtonTitle: "NEXT",
-                                                          lastPageButtonTitle: "GO",
+                                                          pageBtnTitle: "NEXT",
+                                                          lastPageBtnTitle: "ENTER",
+                                                          skipBtnTitle: "SKIP",
+                                                          //closeBtnTitle: "END",
+                                                          //offset: true,
                                                           dismissCallback:
                 {
                     let alertVC = UIAlertController(title: "asdasd", message: "", preferredStyle: .alert)

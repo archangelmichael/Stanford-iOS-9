@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,29 +25,50 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ps-gF-fQm">
-                                <rect key="frame" x="305" y="621" width="54" height="36"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ch8-s2-fhX">
+                                <rect key="frame" x="16" y="627" width="112.5" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4f8-k6-e8R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="SKIP">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSkip:" destination="Xc2-sh-7ZH" eventType="touchUpInside" id="YzN-8E-I7T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ps-gF-fQm">
+                                <rect key="frame" x="246.5" y="627" width="112.5" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3hu-PO-0Dh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="NEXT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startOnboarding:" destination="Xc2-sh-7ZH" eventType="touchUpInside" id="GIg-Zn-Nal"/>
+                                    <action selector="onPage:" destination="Xc2-sh-7ZH" eventType="touchUpInside" id="vSu-nw-2lw"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Gv1-kF-e2j" secondAttribute="trailing" id="4Ob-CR-hhN"/>
+                            <constraint firstItem="1ps-gF-fQm" firstAttribute="width" secondItem="LWK-8w-Km5" secondAttribute="width" multiplier="0.3" id="Baa-nF-ahc"/>
+                            <constraint firstItem="ch8-s2-fhX" firstAttribute="leading" secondItem="LWK-8w-Km5" secondAttribute="leading" constant="16" id="DWq-jB-Zd3"/>
                             <constraint firstAttribute="trailing" secondItem="1ps-gF-fQm" secondAttribute="trailing" constant="16" id="Px9-e5-Fh2"/>
                             <constraint firstItem="Gv1-kF-e2j" firstAttribute="leading" secondItem="LWK-8w-Km5" secondAttribute="leading" id="YcJ-Je-UL7"/>
                             <constraint firstItem="frw-s6-2q2" firstAttribute="top" secondItem="Gv1-kF-e2j" secondAttribute="bottom" id="dtU-Lx-czO"/>
+                            <constraint firstItem="frw-s6-2q2" firstAttribute="top" secondItem="ch8-s2-fhX" secondAttribute="bottom" id="fTt-W5-NMH"/>
                             <constraint firstItem="Gv1-kF-e2j" firstAttribute="top" secondItem="LWK-8w-Km5" secondAttribute="top" id="rhG-og-ReC"/>
-                            <constraint firstItem="frw-s6-2q2" firstAttribute="top" secondItem="1ps-gF-fQm" secondAttribute="bottom" constant="10" id="sI0-QH-IyI"/>
+                            <constraint firstItem="ch8-s2-fhX" firstAttribute="width" secondItem="LWK-8w-Km5" secondAttribute="width" multiplier="0.3" id="roQ-iZ-nyV"/>
+                            <constraint firstItem="frw-s6-2q2" firstAttribute="top" secondItem="1ps-gF-fQm" secondAttribute="bottom" id="sI0-QH-IyI"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnSkip" destination="1ps-gF-fQm" id="GCV-bW-OvP"/>
+                        <outlet property="btnPage" destination="1ps-gF-fQm" id="8df-lV-dXm"/>
+                        <outlet property="btnSkip" destination="ch8-s2-fhX" id="TMe-Cp-60V"/>
                         <outlet property="vBackground" destination="Gv1-kF-e2j" id="gZ9-sB-XJ6"/>
                     </connections>
                 </viewController>
