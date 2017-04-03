@@ -119,6 +119,46 @@
             </objects>
             <point key="canvasLocation" x="1271" y="-235"/>
         </scene>
+        <!--Onboarding Scroll View Controller-->
+        <scene sceneID="UlQ-w3-kao">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingScrollVC" id="bku-RW-CIu" customClass="OnboardingScrollViewController" customModule="FloatingButtonMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jet-Od-lpn"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZIM-0X-n3e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S4y-r2-xFR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmU-bE-RZD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jOL-Cq-lmq">
+                                <rect key="frame" x="168" y="630" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" red="0.49019607843137253" green="0.43529411764705883" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZIM-0X-n3e" firstAttribute="top" secondItem="jOL-Cq-lmq" secondAttribute="bottom" id="9DL-yk-Hhy"/>
+                            <constraint firstAttribute="trailing" secondItem="hmU-bE-RZD" secondAttribute="trailing" id="BEQ-GW-c5D"/>
+                            <constraint firstItem="hmU-bE-RZD" firstAttribute="top" secondItem="S4y-r2-xFR" secondAttribute="top" id="Cg2-LM-Z5T"/>
+                            <constraint firstItem="jOL-Cq-lmq" firstAttribute="centerX" secondItem="S4y-r2-xFR" secondAttribute="centerX" id="WdM-Gy-0E4"/>
+                            <constraint firstItem="hmU-bE-RZD" firstAttribute="leading" secondItem="S4y-r2-xFR" secondAttribute="leading" id="kM7-uW-quL"/>
+                            <constraint firstItem="ZIM-0X-n3e" firstAttribute="top" secondItem="hmU-bE-RZD" secondAttribute="bottom" id="ucZ-9Z-gSy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="vPageControl" destination="jOL-Cq-lmq" id="7iX-Bm-pea"/>
+                        <outlet property="vScroll" destination="hmU-bE-RZD" id="6Hp-KZ-ulq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k9Q-41-2w4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="444" y="1028.6356821589206"/>
+        </scene>
         <!--Page View Controller-->
         <scene sceneID="Tns-UY-5dv">
             <objects>

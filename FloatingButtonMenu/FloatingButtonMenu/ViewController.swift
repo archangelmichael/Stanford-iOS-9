@@ -16,6 +16,7 @@ enum Options : Int {
     case Paper = 0
     case Onboard = 1
     case Custom = 2
+    case Scroll = 3
     case AllCount
     
     func getTitle() -> String? {
@@ -26,6 +27,8 @@ enum Options : Int {
             return "Onboard"
         case .Custom:
             return "Custom"
+        case .Scroll:
+            return "Scroll"
         default:
             return "None"
         }
@@ -35,7 +38,7 @@ enum Options : Int {
 class ViewController: UIViewController {
 
     fileprivate let cellReuseId = "OptionCell"
-    fileprivate let onboardingImages = ["screen0", "screen1", "screen2"]
+    fileprivate let onboardingImages = ["LP1", "LP2", "LP3"]
     
     @IBOutlet weak var tvOptions: UITableView! {
         didSet {
@@ -298,6 +301,29 @@ class ViewController: UIViewController {
                     
                     
             })
+            break
+        case .Scroll:
+            
+            weak var weakSelf = self
+            
+            OnboardingScrollViewController.showOnboarding(from: self,
+                                                          portraitImages: self.onboardingImages,
+                                                          //landscapeImages: ["screen3", "screen3", "screen3"],
+                titles: self.onboardingImages,
+                pageBtnTitle: "NEXT",
+                lastPageBtnTitle: "ENTER",
+                skipBtnTitle: "SKIP",
+                //closeBtnTitle: "END",
+                //offset: true,
+                dismissCallback:
+                {
+                    let alertVC = UIAlertController(title: "asdasd", message: "", preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: "OK",
+                                                    style: .default,
+                                                    handler: nil))
+                    weakSelf?.show(alertVC, sender: self)
+            })
+            
             break
         default:
             print("Invalid type : \(type)");
