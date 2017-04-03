@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -131,6 +132,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4m-p1-Flt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmU-bE-RZD">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </scrollView>
@@ -139,18 +144,37 @@
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="currentPageIndicatorTintColor" red="0.49019607843137253" green="0.43529411764705883" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1g9-V9-2zw">
+                                <rect key="frame" x="16" y="627" width="343" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Let's go">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onClose:" destination="bku-RW-CIu" eventType="touchUpInside" id="yWA-cY-gBQ"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="1g9-V9-2zw" secondAttribute="leading" id="24E-2Z-qQI"/>
+                            <constraint firstAttribute="trailing" secondItem="Z4m-p1-Flt" secondAttribute="trailing" id="5Cr-Ry-OWZ"/>
                             <constraint firstItem="ZIM-0X-n3e" firstAttribute="top" secondItem="jOL-Cq-lmq" secondAttribute="bottom" id="9DL-yk-Hhy"/>
                             <constraint firstAttribute="trailing" secondItem="hmU-bE-RZD" secondAttribute="trailing" id="BEQ-GW-c5D"/>
                             <constraint firstItem="hmU-bE-RZD" firstAttribute="top" secondItem="S4y-r2-xFR" secondAttribute="top" id="Cg2-LM-Z5T"/>
+                            <constraint firstItem="Z4m-p1-Flt" firstAttribute="leading" secondItem="S4y-r2-xFR" secondAttribute="leading" id="OKh-zU-ROd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1g9-V9-2zw" secondAttribute="trailing" id="SDE-aH-Omn"/>
                             <constraint firstItem="jOL-Cq-lmq" firstAttribute="centerX" secondItem="S4y-r2-xFR" secondAttribute="centerX" id="WdM-Gy-0E4"/>
+                            <constraint firstItem="ZIM-0X-n3e" firstAttribute="top" secondItem="1g9-V9-2zw" secondAttribute="bottom" constant="4" id="doz-0f-6UI"/>
                             <constraint firstItem="hmU-bE-RZD" firstAttribute="leading" secondItem="S4y-r2-xFR" secondAttribute="leading" id="kM7-uW-quL"/>
+                            <constraint firstItem="Z4m-p1-Flt" firstAttribute="top" secondItem="S4y-r2-xFR" secondAttribute="top" id="m5r-jR-ql9"/>
                             <constraint firstItem="ZIM-0X-n3e" firstAttribute="top" secondItem="hmU-bE-RZD" secondAttribute="bottom" id="ucZ-9Z-gSy"/>
+                            <constraint firstItem="ZIM-0X-n3e" firstAttribute="top" secondItem="Z4m-p1-Flt" secondAttribute="bottom" id="ydG-Ss-UHk"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnClose" destination="1g9-V9-2zw" id="bwC-Wa-ZIu"/>
+                        <outlet property="vBackground" destination="Z4m-p1-Flt" id="zsB-hC-TAd"/>
                         <outlet property="vPageControl" destination="jOL-Cq-lmq" id="7iX-Bm-pea"/>
                         <outlet property="vScroll" destination="hmU-bE-RZD" id="6Hp-KZ-ulq"/>
                     </connections>

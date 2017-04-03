@@ -38,7 +38,7 @@ enum Options : Int {
 class ViewController: UIViewController {
 
     fileprivate let cellReuseId = "OptionCell"
-    fileprivate let onboardingImages = ["LP1", "LP2", "LP3"]
+    fileprivate let onboardingImages = ["onboarding1", "onboarding2", "onboarding3"]
     
     @IBOutlet weak var tvOptions: UITableView! {
         didSet {
@@ -306,18 +306,16 @@ class ViewController: UIViewController {
             
             weak var weakSelf = self
             
-            OnboardingScrollViewController.showOnboarding(from: self,
-                                                          portraitImages: self.onboardingImages,
-                                                          //landscapeImages: ["screen3", "screen3", "screen3"],
-                titles: self.onboardingImages,
-                pageBtnTitle: "NEXT",
-                lastPageBtnTitle: "ENTER",
-                skipBtnTitle: "SKIP",
-                //closeBtnTitle: "END",
-                //offset: true,
+            OnboardingScrollViewController.showOnboarding(
+                from: self,
+                portraitImages: self.onboardingImages,
+                landscapeImages: ["screen3", "screen3", "screen3"],
+                closeText: "Get started",
+                closePosition: .right,
+                backgroundColor: UIColor.white,
                 dismissCallback:
                 {
-                    let alertVC = UIAlertController(title: "asdasd", message: "", preferredStyle: .alert)
+                    let alertVC = UIAlertController(title: "Onboarding Complete", message: "", preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "OK",
                                                     style: .default,
                                                     handler: nil))

@@ -10,16 +10,23 @@ import UIKit
 
 class OnboardingScrollViewController: UIViewController {
 
+    @IBOutlet weak var vBackground: UIView!
+    
     @IBOutlet weak var vScroll: UIScrollView!
     
     @IBOutlet weak var vPageControl: UIPageControl!
     
+    @IBOutlet weak var btnClose: UIButton!
+    
     static fileprivate let onboardingStoryboardNameID : String = "Onboarding"
     static fileprivate let onboardingVCId = "OnboardingScrollVC"
     
+    fileprivate var closeText: String? = "Let's go"
+    fileprivate var closePosition: UIControlContentHorizontalAlignment = .center
     fileprivate var dismissHandler: (() -> Void)?
-    fileprivate var onboardingPortraitImages = ["LP1", "LP2", "LP3"]
-    fileprivate var onboardingLandscapeImages = ["LP1", "LP2", "LP3"]
+    fileprivate var onboardingPortraitImages : [String] = []
+    fileprivate var onboardingLandscapeImages : [String] = []
+    fileprivate var backgroundColor : UIColor?
     fileprivate var currentPage = 0
     
     
@@ -27,22 +34,35 @@ class OnboardingScrollViewController: UIViewController {
         from: UIViewController,
         portraitImages: [String],
         landscapeImages: [String]? = nil,
-        titles: [String?],
-        pageBtnTitle: String? = nil,
-        lastPageBtnTitle: String? = nil,
-        skipBtnTitle: String? = nil,
-        closeBtnTitle: String? = nil,
-        offset: Bool = true,
+        closeText: String? = "",
+        closePosition : UIControlContentHorizontalAlignment = .right,
+        backgroundColor: UIColor? = nil,
         dismissCallback: (()-> Void)? = nil) {
-            guard portraitImages.count == titles.count else {
-                print("Page images and titles don't match")
+            guard portraitImages.count >= 0 else {
+                print("Invalid images count")
+                
+                if dismissCallback != nil {
+                    dismissCallback!()
+                }
+                
                 return
             }
-            
+        
             let storyboard = UIStoryboard.init(name: onboardingStoryboardNameID , bundle: nil)
             let onboardingParent = storyboard.instantiateViewController(withIdentifier: onboardingVCId)
             if let onboarding = onboardingParent as? OnboardingScrollViewController {
+                onboarding.onboardingPortraitImages = portraitImages
                 
+                if landscapeImages == nil || landscapeImages?.count != portraitImages.count {
+                    onboarding.onboardingLandscapeImages = portraitImages
+                }
+                else {
+                    onboarding.onboardingLandscapeImages = landscapeImages!
+                }
+                
+                onboarding.backgroundColor = backgroundColor
+                onboarding.closePosition = closePosition
+                onboarding.dismissHandler = dismissCallback
             }
             
             onboardingParent.modalPresentationStyle = .overFullScreen
@@ -59,34 +79,112 @@ class OnboardingScrollViewController: UIViewController {
         self.vScroll.isPagingEnabled = true
         self.vScroll.alwaysBounceVertical = false
         
+        self.btnClose.contentHorizontalAlignment = self.closePosition
+        self.vBackground.backgroundColor = self.backgroundColor
+        
+        self.currentPage = 0
         self.vPageControl.isUserInteractionEnabled = false
-        
-        let scrollViewSize = CGSize(width: self.vScroll.frame.size.width,
-                                    height: self.vScroll.frame.size.height)
-        self.setScreens(screens: self.onboardingPortraitImages,
-                        size: scrollViewSize,
-                        page: 0)
-        
-//        self.currentPage = 0
-//        
-//        for (index, imageName) in onboardingPortraitImages.enumerated() {
-//            let xPos = CGFloat(index) * vScroll.frame.size.width
-//            let imageView = UIImageView(frame: CGRect(x: xPos,
-//                                                      y: 0,
-//                                                      width: self.vScroll.frame.size.width,
-//                                                      height: self.vScroll.frame.size.height))
-//            imageView.contentMode = .scaleAspectFit
-//            imageView.image = UIImage(named: imageName)
-//            self.vScroll.addSubview(imageView)
-//        }
-//        
-//        self.vScroll.contentSize = CGSize(width: self.vScroll.frame.size.width * CGFloat(self.onboardingPortraitImages.count),
-//                                          height: self.vScroll.frame.size.height)
+        self.vPageControl.numberOfPages = self.onboardingPortraitImages.count
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.vScroll.alpha = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.reloadOnboarding(animated: false)
+    }
+    
+    func reloadOnboarding(animated: Bool) {
+        if animated {
+            self.setScrollView(visible: false,
+                               completion: { (complete) in
+                                let scrollViewSize = self.getSizeForOrientation()
+                                let images = self.getImagesForScreenOrientation()
+                                self.setScreens(screens: images,
+                                                size: scrollViewSize,
+                                                page: 0)
+                                self.setScrollView(visible: true,
+                                                   completion: nil)
+            })
+        }
+        else {
+            let scrollViewSize = self.getSizeForOrientation()
+            let images = self.getImagesForScreenOrientation()
+            self.setScreens(screens: images,
+                            size: scrollViewSize,
+                            page: 0)
+            self.setScrollView(visible: true,
+                               completion: nil)
+        }
+    }
+    
+    func setScrollView(visible: Bool,
+                       completion: ((Bool) -> Void)?) {
+        UIView.animate(
+            withDuration: visible ? 0.5 : 0.2,
+            animations:
+            {
+                self.vScroll.alpha = visible ? 1.0: 0.0
+        },
+            completion: completion)
+    }
+    
+    func getSizeForOrientation() -> CGSize {
+        let width = self.vScroll.frame.size.width
+        let height = self.vScroll.frame.size.height
+        
+        
+//        switch UIDevice.current.userInterfaceIdiom {
+//        case .phone:
+//            return CGSize(width: width,
+//                          height: height)
+//        case .pad:
+//            break
+//        case .unspecified:
+//            break
+//        default:
+//            break
+//        }
+        
+        return CGSize(width: width,
+                      height: height)
+        
+//        switch UIDevice.current.orientation {
+//        case .portrait, .portraitUpsideDown:
+//            return CGSize(width: width,
+//                          height: height)
+//        case .landscapeLeft, .landscapeRight:
+//            return CGSize(width: width,
+//                          height: height)
+//        default:
+//            return CGSize(width: width,
+//                          height: height)
+//        }
+    }
+    
+    func getImagesForScreenOrientation() -> [String] {
+//        switch UIDevice.current.userInterfaceIdiom {
+//        case .phone:
+//            return onboardingPortraitImages
+//        case .pad:
+//            break
+//        case .unspecified:
+//            break
+//        default:
+//            break
+//        }
+        
+        switch UIDevice.current.orientation {
+        case .portrait, .portraitUpsideDown:
+            return onboardingPortraitImages
+        case .landscapeLeft, .landscapeRight:
+            return onboardingLandscapeImages
+        default:
+            return onboardingPortraitImages
+        }
     }
     
     func setScreens(screens: [String],
@@ -120,6 +218,10 @@ class OnboardingScrollViewController: UIViewController {
         }
     }
     
+    @IBAction func onClose(_ sender: UIButton) {
+        self.closeOnboarding()
+    }
+    
     func closeOnboarding() {
         self.dismiss(animated: true,
                      completion: self.dismissHandler)
@@ -136,14 +238,42 @@ class OnboardingScrollViewController: UIViewController {
             page = self.onboardingPortraitImages.count - 1
         }
         
+        // Switch between close button and page controller depending on current page index
+        self.switchControlesFor(page: page)
+        
         self.currentPage = page
         self.vPageControl.currentPage = page
         self.scrollTo(index: page)
     }
     
+    func switchControlesFor(page: Int) {
+        let lastPageIndex = self.onboardingPortraitImages.count - 1
+        self.vPageControl.isHidden = lastPageIndex == page
+        self.btnClose.isHidden = lastPageIndex != page
+    }
+    
     func scrollTo(index: Int) {
         self.vScroll.setContentOffset(CGPoint(x: self.vScroll.frame.size.width * CGFloat(index), y: 0),
                                       animated: false)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isPortrait { // Portrait
+            print("Portrait")
+            
+            
+        }
+        else if UIDevice.current.orientation.isLandscape { // Landscape
+            print("Landscape")
+        }
+        
+        self.reloadOnboarding(animated: true)
+        
+//        let scrollViewSize = size
+//        let images = self.getImagesForScreenOrientation()
+//        self.setScreens(screens: images,
+//                        size: scrollViewSize,
+//                        page: 0)
     }
     
     /*
@@ -160,7 +290,6 @@ class OnboardingScrollViewController: UIViewController {
 
 extension OnboardingScrollViewController : UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // var currentPage = 0
         let pageWidth = self.vScroll.frame.size.width
         let fractionOfPage : CGFloat = self.vScroll.contentOffset.x / pageWidth
         let page = lround(Double(fractionOfPage))
