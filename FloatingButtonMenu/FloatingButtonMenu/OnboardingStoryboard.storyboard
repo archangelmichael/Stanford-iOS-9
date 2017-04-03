@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Onboarding Scroll View Controller-->
+        <scene sceneID="Ww5-g8-XBk">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingScrollVC" id="Ywo-X5-bII" customClass="OnboardingScrollViewController" customModule="FloatingButtonMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z9r-QN-jZD"/>
+                        <viewControllerLayoutGuide type="bottom" id="rNU-QT-PZW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vis-bI-7V5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPy-ZB-WH3">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIH-ce-xME">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="pOt-ae-W7H">
+                                <rect key="frame" x="168" y="630" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" red="0.49019607840000001" green="0.43529411759999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9e-eU-JdS">
+                                <rect key="frame" x="16" y="624" width="343" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Let's go">
+                                    <color key="titleColor" red="0.49019607840000001" green="0.43529411759999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onClose:" destination="Ywo-X5-bII" eventType="touchUpInside" id="N7C-ad-TWW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="Q9e-eU-JdS" secondAttribute="leading" id="1aA-9k-lfm"/>
+                            <constraint firstItem="gPy-ZB-WH3" firstAttribute="top" secondItem="Vis-bI-7V5" secondAttribute="top" id="G3V-2m-3m4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q9e-eU-JdS" secondAttribute="trailing" id="JGt-Vk-ugQ"/>
+                            <constraint firstAttribute="trailing" secondItem="gPy-ZB-WH3" secondAttribute="trailing" id="Je8-TF-TjX"/>
+                            <constraint firstItem="rNU-QT-PZW" firstAttribute="top" secondItem="gPy-ZB-WH3" secondAttribute="bottom" id="Mkf-Ds-uMS"/>
+                            <constraint firstItem="rNU-QT-PZW" firstAttribute="top" secondItem="Q9e-eU-JdS" secondAttribute="bottom" constant="4" id="MzI-Fq-7Zx"/>
+                            <constraint firstItem="rNU-QT-PZW" firstAttribute="top" secondItem="VIH-ce-xME" secondAttribute="bottom" id="Uot-dP-DKG"/>
+                            <constraint firstItem="pOt-ae-W7H" firstAttribute="centerX" secondItem="Vis-bI-7V5" secondAttribute="centerX" id="V7X-6P-oBB"/>
+                            <constraint firstItem="VIH-ce-xME" firstAttribute="leading" secondItem="Vis-bI-7V5" secondAttribute="leading" id="eLb-bo-Hsp"/>
+                            <constraint firstItem="gPy-ZB-WH3" firstAttribute="leading" secondItem="Vis-bI-7V5" secondAttribute="leading" id="fIn-sp-fzT"/>
+                            <constraint firstItem="rNU-QT-PZW" firstAttribute="top" secondItem="pOt-ae-W7H" secondAttribute="bottom" id="ifW-1t-VBg"/>
+                            <constraint firstAttribute="trailing" secondItem="VIH-ce-xME" secondAttribute="trailing" id="lFJ-oh-P2x"/>
+                            <constraint firstItem="VIH-ce-xME" firstAttribute="top" secondItem="Vis-bI-7V5" secondAttribute="top" id="nh8-kM-OPm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnClose" destination="Q9e-eU-JdS" id="qPr-zd-Dup"/>
+                        <outlet property="vBackground" destination="gPy-ZB-WH3" id="tf9-wI-TdT"/>
+                        <outlet property="vPageControl" destination="pOt-ae-W7H" id="Vkg-Ib-Bbb"/>
+                        <outlet property="vScroll" destination="VIH-ce-xME" id="Qbw-Oh-ZVp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="izw-p1-7Ex" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="444" y="1028.6356821589206"/>
+        </scene>
+    </scenes>
+</document>

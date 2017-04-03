@@ -12,6 +12,7 @@
 		191FDAE41E8D3F860019B882 /* OnboardingPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191FDAE31E8D3F860019B882 /* OnboardingPageContentViewController.swift */; };
 		191FDAE61E8D40F10019B882 /* OnboardingParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191FDAE51E8D40F10019B882 /* OnboardingParentViewController.swift */; };
 		195178091E9211D200F9BA1A /* OnboardingScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195178081E9211D200F9BA1A /* OnboardingScrollViewController.swift */; };
+		1951780C1E9247A800F9BA1A /* OnboardingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951780B1E9247A800F9BA1A /* OnboardingStoryboard.storyboard */; };
 		1963C5451E89040300F484D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963C5441E89040300F484D7 /* AppDelegate.swift */; };
 		1963C5471E89040300F484D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1963C5461E89040300F484D7 /* ViewController.swift */; };
 		1963C54A1E89040300F484D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1963C5481E89040300F484D7 /* Main.storyboard */; };
@@ -23,7 +24,8 @@
 		191FDAE11E8D3F2D0019B882 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		191FDAE31E8D3F860019B882 /* OnboardingPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageContentViewController.swift; sourceTree = "<group>"; };
 		191FDAE51E8D40F10019B882 /* OnboardingParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingParentViewController.swift; sourceTree = "<group>"; };
-		195178081E9211D200F9BA1A /* OnboardingScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingScrollViewController.swift; sourceTree = "<group>"; };
+		195178081E9211D200F9BA1A /* OnboardingScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingScrollViewController.swift; path = ../OnboardingScrollViewController.swift; sourceTree = "<group>"; };
+		1951780B1E9247A800F9BA1A /* OnboardingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingStoryboard.storyboard; sourceTree = "<group>"; };
 		1963C5411E89040300F484D7 /* FloatingButtonMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingButtonMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1963C5441E89040300F484D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1963C5461E89040300F484D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,10 +56,18 @@
 				191FDAE11E8D3F2D0019B882 /* Onboarding.storyboard */,
 				191FDAE31E8D3F860019B882 /* OnboardingPageContentViewController.swift */,
 				191FDAE51E8D40F10019B882 /* OnboardingParentViewController.swift */,
-				195178081E9211D200F9BA1A /* OnboardingScrollViewController.swift */,
 			);
 			name = Onboarding;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		1951780A1E92478A00F9BA1A /* ScrollOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1951780B1E9247A800F9BA1A /* OnboardingStoryboard.storyboard */,
+				195178081E9211D200F9BA1A /* OnboardingScrollViewController.swift */,
+			);
+			name = ScrollOnboarding;
 			sourceTree = "<group>";
 		};
 		1963C5381E89040300F484D7 = {
@@ -81,6 +91,7 @@
 		1963C5431E89040300F484D7 /* FloatingButtonMenu */ = {
 			isa = PBXGroup;
 			children = (
+				1951780A1E92478A00F9BA1A /* ScrollOnboarding */,
 				191FDAE01E8D3EEB0019B882 /* Onboarding */,
 				1963C5441E89040300F484D7 /* AppDelegate.swift */,
 				1963C5461E89040300F484D7 /* ViewController.swift */,
@@ -173,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1963C54F1E89040300F484D7 /* LaunchScreen.storyboard in Resources */,
+				1951780C1E9247A800F9BA1A /* OnboardingStoryboard.storyboard in Resources */,
 				1963C54C1E89040300F484D7 /* Assets.xcassets in Resources */,
 				1963C54A1E89040300F484D7 /* Main.storyboard in Resources */,
 				191FDAE21E8D3F2D0019B882 /* Onboarding.storyboard in Resources */,

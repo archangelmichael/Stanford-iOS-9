@@ -223,12 +223,14 @@ class ViewController: UIViewController {
                 
                 if index < self.onboardingImages.count - 1 {
                     vc.viewDidAppearBlock = {
-                        weakSelf?.onboardingVC?.skipButton.setTitle("Next", for: .normal)
+                        weakSelf?.onboardingVC?.skipButton.setTitle("Next",
+                                                                    for: .normal)
                     }
                 }
                 else {
                     vc.viewDidAppearBlock = {
-                        weakSelf?.onboardingVC?.skipButton.setTitle("Enter", for: .normal)
+                        weakSelf?.onboardingVC?.skipButton.setTitle("Enter",
+                                                                    for: .normal)
                     }
                 }
                 
@@ -308,14 +310,16 @@ class ViewController: UIViewController {
             
             OnboardingScrollViewController.showOnboarding(
                 from: self,
-                portraitImages: self.onboardingImages,
-                landscapeImages: ["screen3", "screen3", "screen3"],
+                portraitImages: [self.onboardingImages[0], self.onboardingImages[1]  ],
+                //landscapeImages: ["screen3", "screen3", "screen3"],
                 closeText: "Get started",
                 closePosition: .right,
                 backgroundColor: UIColor.white,
                 dismissCallback:
                 {
-                    let alertVC = UIAlertController(title: "Onboarding Complete", message: "", preferredStyle: .alert)
+                    let alertVC = UIAlertController(title: "Onboarding Complete",
+                                                    message: "",
+                                                    preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "OK",
                                                     style: .default,
                                                     handler: nil))
