@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		025F8E15671F3A4E6A36CF4F /* Pods_FloatingButtonMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4FD9DD5C91643F6E76739A /* Pods_FloatingButtonMenu.framework */; };
+		190DFC401E977C54007EF669 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190DFC3F1E977C54007EF669 /* StackViewController.swift */; };
 		191FDAE21E8D3F2D0019B882 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 191FDAE11E8D3F2D0019B882 /* Onboarding.storyboard */; };
 		191FDAE41E8D3F860019B882 /* OnboardingPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191FDAE31E8D3F860019B882 /* OnboardingPageContentViewController.swift */; };
 		191FDAE61E8D40F10019B882 /* OnboardingParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191FDAE51E8D40F10019B882 /* OnboardingParentViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		190DFC3F1E977C54007EF669 /* StackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		191FDAE11E8D3F2D0019B882 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		191FDAE31E8D3F860019B882 /* OnboardingPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageContentViewController.swift; sourceTree = "<group>"; };
 		191FDAE51E8D40F10019B882 /* OnboardingParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingParentViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +52,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		190DFC411E977D3C007EF669 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				1963C5441E89040300F484D7 /* AppDelegate.swift */,
+				1963C54B1E89040300F484D7 /* Assets.xcassets */,
+				1963C54D1E89040300F484D7 /* LaunchScreen.storyboard */,
+				1963C5501E89040300F484D7 /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		190DFC421E977D4D007EF669 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1963C5461E89040300F484D7 /* ViewController.swift */,
+				190DFC3F1E977C54007EF669 /* StackViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		190DFC431E977E06007EF669 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		191FDAE01E8D3EEB0019B882 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,14 +120,12 @@
 		1963C5431E89040300F484D7 /* FloatingButtonMenu */ = {
 			isa = PBXGroup;
 			children = (
+				190DFC431E977E06007EF669 /* Views */,
 				1951780A1E92478A00F9BA1A /* ScrollOnboarding */,
 				191FDAE01E8D3EEB0019B882 /* Onboarding */,
-				1963C5441E89040300F484D7 /* AppDelegate.swift */,
-				1963C5461E89040300F484D7 /* ViewController.swift */,
+				190DFC411E977D3C007EF669 /* SupportingFiles */,
+				190DFC421E977D4D007EF669 /* ViewControllers */,
 				1963C5481E89040300F484D7 /* Main.storyboard */,
-				1963C54B1E89040300F484D7 /* Assets.xcassets */,
-				1963C54D1E89040300F484D7 /* LaunchScreen.storyboard */,
-				1963C5501E89040300F484D7 /* Info.plist */,
 			);
 			path = FloatingButtonMenu;
 			sourceTree = "<group>";
@@ -150,7 +177,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Oryx;
 				TargetAttributes = {
 					1963C5401E89040300F484D7 = {
@@ -249,6 +276,7 @@
 				191FDAE41E8D3F860019B882 /* OnboardingPageContentViewController.swift in Sources */,
 				1963C5471E89040300F484D7 /* ViewController.swift in Sources */,
 				1963C5451E89040300F484D7 /* AppDelegate.swift in Sources */,
+				190DFC401E977C54007EF669 /* StackViewController.swift in Sources */,
 				191FDAE61E8D40F10019B882 /* OnboardingParentViewController.swift in Sources */,
 				195178091E9211D200F9BA1A /* OnboardingScrollViewController.swift in Sources */,
 			);
@@ -371,6 +399,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 798964D6E1FC67A69C7EF350 /* Pods-FloatingButtonMenu.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P4JVA28GY3;
 				INFOPLIST_FILE = FloatingButtonMenu/Info.plist;
@@ -379,7 +408,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.oryx.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -387,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E28A43E3B12CB11BE9E5755 /* Pods-FloatingButtonMenu.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P4JVA28GY3;
 				INFOPLIST_FILE = FloatingButtonMenu/Info.plist;
@@ -395,7 +425,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.oryx.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

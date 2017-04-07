@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         didSet {
             self.btnFloat.autoCloseOnTap = true
             self.btnFloat.openAnimationType = .fade
-            self.btnFloat.rotationDegrees = CGFloat(180/2*M_PI)
+            self.btnFloat.rotationDegrees = CGFloat(180/2*Double.pi)
             
             self.btnFloat.buttonImage = UIImage(named:"menu-off")
             
