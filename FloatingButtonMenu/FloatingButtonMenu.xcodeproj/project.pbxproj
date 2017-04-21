@@ -19,6 +19,8 @@
 		1963C54A1E89040300F484D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1963C5481E89040300F484D7 /* Main.storyboard */; };
 		1963C54C1E89040300F484D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1963C54B1E89040300F484D7 /* Assets.xcassets */; };
 		1963C54F1E89040300F484D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1963C54D1E89040300F484D7 /* LaunchScreen.storyboard */; };
+		19E2453C1EAA3230003E7A31 /* ButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E2453B1EAA3230003E7A31 /* ButtonsViewController.swift */; };
+		19E2453E1EAA3577003E7A31 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 19E2453D1EAA3577003E7A31 /* sample.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		1963C54B1E89040300F484D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1963C54E1E89040300F484D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1963C5501E89040300F484D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19E2453B1EAA3230003E7A31 /* ButtonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsViewController.swift; sourceTree = "<group>"; };
+		19E2453D1EAA3577003E7A31 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		798964D6E1FC67A69C7EF350 /* Pods-FloatingButtonMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingButtonMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FloatingButtonMenu/Pods-FloatingButtonMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		7E28A43E3B12CB11BE9E5755 /* Pods-FloatingButtonMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingButtonMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-FloatingButtonMenu/Pods-FloatingButtonMenu.release.xcconfig"; sourceTree = "<group>"; };
 		9F4FD9DD5C91643F6E76739A /* Pods_FloatingButtonMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FloatingButtonMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +59,7 @@
 		190DFC411E977D3C007EF669 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				19E2453D1EAA3577003E7A31 /* sample.pdf */,
 				1963C5441E89040300F484D7 /* AppDelegate.swift */,
 				1963C54B1E89040300F484D7 /* Assets.xcassets */,
 				1963C54D1E89040300F484D7 /* LaunchScreen.storyboard */,
@@ -68,6 +73,7 @@
 			children = (
 				1963C5461E89040300F484D7 /* ViewController.swift */,
 				190DFC3F1E977C54007EF669 /* StackViewController.swift */,
+				19E2453B1EAA3230003E7A31 /* ButtonsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -212,6 +218,7 @@
 			files = (
 				1963C54F1E89040300F484D7 /* LaunchScreen.storyboard in Resources */,
 				1951780C1E9247A800F9BA1A /* OnboardingStoryboard.storyboard in Resources */,
+				19E2453E1EAA3577003E7A31 /* sample.pdf in Resources */,
 				1963C54C1E89040300F484D7 /* Assets.xcassets in Resources */,
 				1963C54A1E89040300F484D7 /* Main.storyboard in Resources */,
 				191FDAE21E8D3F2D0019B882 /* Onboarding.storyboard in Resources */,
@@ -277,6 +284,7 @@
 				1963C5471E89040300F484D7 /* ViewController.swift in Sources */,
 				1963C5451E89040300F484D7 /* AppDelegate.swift in Sources */,
 				190DFC401E977C54007EF669 /* StackViewController.swift in Sources */,
+				19E2453C1EAA3230003E7A31 /* ButtonsViewController.swift in Sources */,
 				191FDAE61E8D40F10019B882 /* OnboardingParentViewController.swift in Sources */,
 				195178091E9211D200F9BA1A /* OnboardingScrollViewController.swift in Sources */,
 			);
@@ -408,7 +416,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.oryx.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -425,7 +433,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.oryx.testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -88,6 +88,66 @@
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="34.632683658170919"/>
         </scene>
+        <!--Buttons View Controller-->
+        <scene sceneID="yiS-sE-fT8">
+            <objects>
+                <viewController id="SuI-hx-m7o" customClass="ButtonsViewController" customModule="FloatingButtonMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rZF-ax-cdN"/>
+                        <viewControllerLayoutGuide type="bottom" id="c1a-H2-EMP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Gw-tC-Z8B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eN0-ZP-H5O">
+                                <rect key="frame" x="137" y="20" width="100" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Gtv-QH-zxK"/>
+                                    <constraint firstAttribute="height" constant="100" id="jFS-KU-sLD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onBlue:" destination="SuI-hx-m7o" eventType="touchUpInside" id="oh3-s5-hQ0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTs-ue-W3v">
+                                <rect key="frame" x="137" y="128" width="100" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="5TX-pW-Iuu"/>
+                                    <constraint firstAttribute="height" constant="100" id="cxl-5s-xJr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRed:" destination="SuI-hx-m7o" eventType="touchUpInside" id="Tbx-Jp-IIp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eN0-ZP-H5O" firstAttribute="top" secondItem="rZF-ax-cdN" secondAttribute="bottom" id="AOJ-VH-kch"/>
+                            <constraint firstItem="PTs-ue-W3v" firstAttribute="top" secondItem="eN0-ZP-H5O" secondAttribute="bottom" constant="8" id="Ftt-3C-3lE"/>
+                            <constraint firstItem="eN0-ZP-H5O" firstAttribute="centerX" secondItem="9Gw-tC-Z8B" secondAttribute="centerX" id="Oxp-5F-mSR"/>
+                            <constraint firstItem="PTs-ue-W3v" firstAttribute="centerX" secondItem="9Gw-tC-Z8B" secondAttribute="centerX" id="vdu-IH-iKY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnBlue" destination="eN0-ZP-H5O" id="hqj-5I-7Ep"/>
+                        <outlet property="btnRed" destination="PTs-ue-W3v" id="6tB-bI-nBt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jdE-Or-33M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="24.800000000000001" y="738.08095952023996"/>
+        </scene>
         <!--Stack View Controller-->
         <scene sceneID="hSw-P9-8CJ">
             <objects>
